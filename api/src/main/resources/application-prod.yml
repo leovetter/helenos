@@ -1,0 +1,23 @@
+## PostgreSQL
+spring:
+  application:
+    name: backend
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/helenos
+    username: helenos
+    password: helenos
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql:  false
+    hibernate:
+      ddl-auto: none
+      
+# port
+server:
+  port: 443
+      
+helenos:
+  host: 185.146.20.149
+  stripeKey: sk_live_Pn0WCL2PBoWGE0lyjPuTolhY00qDsrQBuB

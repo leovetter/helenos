@@ -1,0 +1,16 @@
+## PostgreSQL
+spring:
+  application:
+    name: backend
+  datasource:
+    url: jdbc:postgresql://localhost:5432/helenos
+    username: helenos
+    password: helenos
+    
+# port
+server:
+  port: 8081
+    
+helenos:
+  host: localhost
+  stripeKey: sk_test_fgHWq5be8y7YV3dAHsxe6zSi003gqJ6kRw

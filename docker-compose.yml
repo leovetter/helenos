@@ -1,0 +1,17 @@
+version: "3.5"
+
+services:
+
+  tomcat-library:
+    container_name: tomcat-library-server
+    image: tomcat-library-server
+    build:
+      context: .
+      dockerfile: tomcat-library.prod.dockerfile
+    ports:
+      - "8201:8201"
+
+networks:
+  default:
+    external:
+      name: helenos-network
