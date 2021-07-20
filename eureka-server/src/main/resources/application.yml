@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: eureka-server
+  devtools:
+    restart:
+      enabled: true
+  profiles:
+    active: @activatedProperties@
+
+server:
+  address: 0.0.0.0
+  port: 8761
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

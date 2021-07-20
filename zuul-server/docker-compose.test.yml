@@ -1,0 +1,17 @@
+version: "3.5"
+
+services:
+
+  tomcat-zuul-server:
+    container_name: tomcat-zuul-server
+    image: tomcat-zuul-server
+    build:
+      context: .
+      dockerfile: tomcat-zuul.test.dockerfile
+    ports:
+      - "8762:8762"
+
+networks:
+  default:
+    external:
+      name: helenos-network

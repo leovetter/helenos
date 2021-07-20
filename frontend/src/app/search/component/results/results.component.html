@@ -1,0 +1,53 @@
+<div class="results">
+
+    <div class="users-result">
+        <span class="title">{{ 'person' | translate }}</span>
+        <div class="user" *ngFor="let result of results | filterResults:'user'"> 
+
+            <sh-secured-media class="picture"
+                            [type]="'image'"
+                            [load]="true"
+                            [isIntersecting]="true"
+                            [src]="result.picture | formatSrc:'profil':result.idUser">
+            </sh-secured-media>
+            <div class="infos">
+                <span class="name" (click)="goProfile(result.idUser)">{{ result.firstName }} {{ result.lastName }}</span>
+                <span class="album-number">{{ 'userOwn' | translate }} {{ result.albumNumber }} {{ 'albums2' | translate }}</span>
+            </div>
+            <fa-icon [icon]="faUserPlus" class="follow fa-2x" (click)="followUser(result.idUser)"></fa-icon>
+            
+        </div>
+
+        <button class="see-all" *ngIf="hasUser()">{{ 'see-all' | translate }}</button>
+
+        <div *ngIf="!hasUser()" class="no-result">
+            <span>{{ 'noResult' | translate }}</span>
+        </div>
+    </div>
+
+    <div class="albums-result">
+        <span class="title">{{ 'albums3' | translate }}</span>
+        <div class="album" *ngFor="let result of results | filterResults:'album'"> 
+            
+            <sh-secured-media class="picture"
+                            [type]="'image'"
+                            [load]="true"
+                            [isIntersecting]="true"
+                            [src]="result.cover | formatUrl:'cover':result.coverOwnerId">
+            </sh-secured-media>
+            <div class="infos">
+                <span class="name">{{ result.title }} </span>
+                <span class="audio-number">{{ 'albumContain' | translate }} {{ result.audioNumber }} {{ 'audio' | translate }}</span>
+            </div>
+
+        </div>
+
+        <button class="see-all" *ngIf="hasAlbums()">{{ 'see-all' | translate }}</button>
+
+        <div *ngIf="!hasAlbums()" class="no-result">
+            <span>{{ 'noResult' | translate }}</span>
+        </div>
+    </div>
+    
+
+</div>

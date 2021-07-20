@@ -1,0 +1,326 @@
+@import 'src/variables.scss';
+@import 'src/mixins.scss';
+
+.popup {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba($color-black, .8);
+    z-index: 9;
+
+    .close-image {
+        position: absolute;
+        top: 2%;
+        right: 2%;
+        cursor: pointer;
+        color: $color-white;
+      }
+
+    .image-menu {
+        display: flex;
+        align-items: center;
+        height: 100vh;
+
+        .image-box {
+            width: 50%;
+            height: 90%;
+            position: relative;
+
+            .crop-mode {
+                border: 3px solid $color-white;
+                max-height: 95%;
+                z-index: 5;
+                position: fixed;
+                top: 50%;
+                left: 5%;
+                transform: translateY(-50%);
+                z-index: 5;
+
+                .top-left {
+                    position: absolute;
+                    background-color: transparent;
+                    width: 2rem;
+                    height: 2rem;
+                    border-left: 5px solid $color-white;
+                    border-top: 5px solid $color-white;
+                    top: 5px;
+                    left: 5px;
+                    cursor: pointer;
+                    z-index: 5;
+                }
+
+                .top {
+                    position: absolute;
+                    background-color: transparent;
+                    width: 2rem;
+                    height: 2rem;
+                    border-top: 5px solid $color-white;
+                    top: 5px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    cursor: pointer;
+                    z-index: 5;
+                }
+
+                .top-right {
+                    position: absolute;
+                    background-color: transparent;
+                    width: 2rem;
+                    height: 2rem;
+                    border-right: 5px solid $color-white;
+                    border-top: 5px solid $color-white;
+                    top: 5px;
+                    right: 5px;
+                    cursor: pointer;
+                    z-index: 5;
+                }
+
+                .right {
+                    position: absolute;
+                    background-color: transparent;
+                    width: 2rem;
+                    height: 2rem;
+                    border-right: 5px solid $color-white;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    right: 5px;
+                    cursor: pointer;
+                    z-index: 5;
+                }
+
+                .bottom-right {
+                    position: absolute;
+                    background-color: transparent;
+                    width: 2rem;
+                    height: 2rem;
+                    border-right: 5px solid $color-white;
+                    bottom: 5px;
+                    right: 5px;
+                    cursor: pointer;
+                    z-index: 5;
+                }
+
+                .bottom {
+                    position: absolute;
+                    background-color: transparent;
+                    width: 2rem;
+                    height: 2rem;
+                    border-bottom: 5px solid $color-white;
+                    bottom: 5px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    cursor: pointer;
+                    z-index: 5;
+                }
+
+                .bottom-left {
+                    position: absolute;
+                    background-color: transparent;
+                    width: 2rem;
+                    height: 2rem;
+                    border-left: 5px solid $color-white;
+                    border-bottom: 5px solid $color-white;
+                    bottom: 5px;
+                    left: 5px;
+                    cursor: pointer;
+                    z-index: 5;
+                }
+
+                .left {
+                    position: absolute;
+                    background-color: transparent;
+                    width: 2rem;
+                    height: 2rem;
+                    border-left: 5px solid $color-white;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    left: 5px;
+                    cursor: pointer;
+                    z-index: 5;
+                }
+            }
+
+            img {
+                max-height: 95%;
+                position: fixed;
+                top: 50%;
+                left: 5%;
+                transform: translateY(-50%);
+            }
+        }
+
+        .menu-transformation  {
+            display: flex;
+            flex-direction: column;
+            width: 35%;
+            height: 80vh;
+
+
+            .transformations {
+                height: 80%;
+                margin-bottom: 2rem;
+                background-color: $color-grey-light;
+                padding: 1rem 1rem;
+                color: $color-earth;
+                font-size: 1rem;
+
+                h1 {
+                    font-size: 1.5rem;
+                    text-align: center;
+                    color: $color-coffe;
+                }
+
+                label {
+                    margin-right: 5px;
+                    color: $color-earth;
+                    font-size: 1rem;
+                }
+
+                .crop-resize {
+                    margin-top: 1rem;
+                    display: flex;
+                    align-items: center;
+                }
+
+                .header {
+                    display: flex;
+                    align-items: center;
+                    margin-top: 1rem;
+
+                    h2 {
+                        font-size: 1.3rem;
+                    }
+
+                    fa-icon {
+                        margin-left: auto;
+                        cursor: pointer;
+                        color: $color-earth;
+                    }
+                }
+
+                .menu {
+
+                    margin-top: 1rem;
+                    display: flex;
+                }
+
+                .color-menu {
+
+                    select{
+                        width: 20%;
+                    }
+
+                    .color-level {
+                        margin-left: 1rem;
+
+                        input {
+                            width: 30%;
+                        }
+                    }
+
+                    .color-blend {
+                        margin-left: 1rem;
+
+                        input {
+                            width: 30%;
+                        }
+                    }
+                }
+
+                .blur-menu {
+                    
+                    .blur {
+                        margin-left: 1rem;
+
+                        input {
+                            width: 30%;
+                        }
+                    }
+
+                    .sharpen {
+                        margin-left: 1rem;
+
+                        input {
+                            width: 30%;
+                        }
+                    }
+
+                    .pixelate {
+                        margin-left: 1rem;
+
+                        input {
+                            width: 30%;
+                            margin-right: 1rem;
+
+                            &:last-child {
+                                width: auto;
+                            }
+                        }
+                    }
+
+                    .vignette {
+                        margin-left: 1rem;
+
+                        input {
+                            width: 30%;
+                        }
+                    }
+                }
+            }
+
+            .buttons {
+                background-color: $color-grey-light;
+                padding: 1rem 0;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+                padding-right: 1rem;
+
+                button {
+                    padding: 5px 1rem;
+                    background-color: transparent;
+                    cursor: pointer;
+                    border-radius: 5px;
+                    
+
+                    &.save-button {
+                        color: $color-green;
+                        border: 1px solid $color-green;
+
+                        &:hover {
+                            background-color: $color-green-2;
+                            opacity: 0.5;
+                        }
+                    }
+
+                    &.transform-button {
+                        margin-left: 1rem;
+                        color: $color-blue;
+                        border: 1px solid $color-blue;
+
+                        &:hover {
+                            background-color: $color-blue-3;
+                            opacity: 0.5;
+                        }
+                    }
+
+                    &.restore-button {
+                        margin-left: 1rem;
+                        color: $color-earth;
+                        border: 1px solid $color-earth;
+
+                        &:hover {
+                            background-color: $color-earth-2;
+                            opacity: 0.5;
+                        }
+                    }
+                }
+            }
+        }
+    }
+   
+
+    
+}

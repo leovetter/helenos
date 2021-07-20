@@ -1,0 +1,69 @@
+<div class="header-container" [@reduceNavbar]="{value: smallNavbar ? 'small' : 'full', params: {defHeight: calculHeight()}}" [ngClass]="{ 'small-header': showMenuSettings }">
+  <div class="header" [ngClass]="{ 'small-header': showMenuSettings }"  [@reduceHeader]="{value: smallNavbar ? 'small' : 'full', params: {defHeight: calculHeight()}}">
+
+    <div class="logo-box" (click)="goToHome()">
+      <img src="../../../../assets/images/logo/white_logo_transparent_background.png" alt="helenos logo" class="logo">
+    </div>
+
+    <div class="menu" [@fadeOut]="smallNavbar ? 'visible' : 'hide'">
+      <a [routerLink]="['/account/home']" routerLinkActive="active" class="home-link" *ngIf="!isLoggedIn() && showWelcomeLink">{{ 'home' | translate }}</a>
+      
+      <input type="text" *ngIf="isLoggedIn()" class="search-app" placeholder="{{ 'search' | translate }}" [(ngModel)]="searchApp" (keyup)="searchAppli($event)">
+
+      <div class="break">
+      </div>
+
+      <div class="profil-container right-link" *ngIf="isLoggedIn() && (user$ | async) as user" (click)="goProfil()">
+        <img *ngIf="!user?.picture" src="../../../../assets/images/question-mark-512.png">
+        <sh-secured-media *ngIf="user?.picture" [src]="user?.picture | formatSrc:'profil'" [type]="'image'" [load]="true" [isIntersecting]="true"></sh-secured-media>
+        <span>{{user?.firstName}}</span>
+      </div>
+      <fa-icon [icon]="faChevronCircleDown" class="fa-2x chevron-down" *ngIf="isLoggedIn() && (user$ | async) as user" (click)="showMenuSettings = !showMenuSettings"></fa-icon>
+      <div class="menu-settings" *ngIf="showMenuSettings">
+        <ul class="menu-settings-links">
+          <li>
+            <fa-icon [icon]="faCog" class="fa-2x"></fa-icon>
+            <a class="link" *ngIf="isLoggedIn()" (click)="goSettings()">{{ 'settings' | translate }}</a>
+          </li>
+          <li>
+            <fa-icon [icon]="faQuestion" class="fa-2x"></fa-icon>
+            <a class="link" *ngIf="isLoggedIn()" (click)="goAssistance()">{{ 'assistance' | translate }}</a>
+          </li>
+          <li>
+            <fa-icon [icon]="faSignOutAlt" class="fa-2x"></fa-icon>
+            <a (click)="logout()" class="link" *ngIf="isLoggedIn()">{{ 'logout' | translate }}</a>
+          </li>
+        </ul>
+        
+        
+        
+      </div>  
+    </div>
+
+    <div class="text-box" [@fadeOut]="smallNavbar ? 'hide' : 'visible'" *ngIf="!isLoggedIn()">
+        <h1 class="heading-primary">
+            <img src="../../../../assets/images/logo/white_text_transparent_background.png" alt="helenos text" 
+                 class="helenos-text" [@shakeHelenosText]="shakeHelenosText ? 'final' : 'start'">
+            <span class="heading-primary-sub" [@shakeHeading]="shakeHeading ? 'final' : 'start'">{{ 'homeSubHeading' | translate }}</span>
+        </h1>
+    </div>
+
+    <div *ngIf="!isLoggedIn()" class="navigation-button" [@fadeOut]="smallNavbar ? 'hide' : 'visible'" [@closeNavigationButton]="isNavigationMenu ? 'close' : 'open'" (click)="isNavigationMenu = !isNavigationMenu">
+      <span class="navigation-close-icon" [@closeNavigationIcon]="isNavigationMenu ? 'close' : 'open'"></span>
+    </div>
+    
+    <div *ngIf="!isLoggedIn()" class="navigation-menu" [@fadeOut]="smallNavbar ? 'hide' : 'visible'" [@openNavigationMenu]="isNavigationMenu ? 'open' : 'close'">
+      <span class="navigation-open-icon" [@showOpenIcon]="isNavigationMenu ? 'open' : 'close'" (click)="isNavigationMenu = !isNavigationMenu">&#10005;</span>
+      <ul [@openMenuLinks]="isNavigationMenu ? 'open' : 'close'">
+        <li><a (click)="showLoginPopup = !showLoginPopup">{{ 'login' | translate }}</a></li>
+        <li><a [routerLink]="['/account/sign-up']">{{ 'signUp' | translate }}</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<sh-popup *ngIf="showLoginPopup" (hidePopup)="showLoginPopup = false">
+
+  <acc-login (setShowLoginView)="showLoginPopup = !showLoginPopup"></acc-login>
+
+</sh-popup>

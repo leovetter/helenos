@@ -1,0 +1,89 @@
+@import 'src/variables.scss';
+
+.footer {
+  height: 5rem;
+  // background-color: $color-earth;
+  color: $color-white;
+  position: relative;
+  border-top: 0.1rem solid $color-coffe;
+
+  .center {
+    display: block;
+    text-align: center;
+  }
+
+  span {
+    color: $color-coffe;
+  }
+
+  a {
+    color: $color-coffe;
+    cursor: pointer;
+  }
+
+  button {
+    position: absolute;
+    cursor: pointer;
+    top: 1rem;
+    right: 1rem;
+    color: $color-coffe;
+    padding: 0.3rem 1rem;
+    width: 10rem;
+    height: 3rem;
+    background-color: transparent !important;
+    border: 0.1rem solid $color-coffe;
+    border-radius: 0.5rem;
+    transition: all .2s;
+
+    &:focus {
+      outline: none;
+      text-decoration: none;
+      background-color: transparent;
+    }
+
+    &:hover {
+      box-shadow: 0 1rem 2rem rgba($color-black, .15);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+        box-shadow: 0 .5rem 1rem rgba($color-black, .15);
+        transform: translateY(0);
+    }
+
+    .triangle {
+      position: absolute;
+      transform: translate(-50%, 0);
+      left: 5rem;
+      bottom: 3rem;
+      width: 0; 
+      height: 0; 
+      border-left: 2rem solid transparent;
+      border-right: 2rem solid transparent;
+      border-top: 2rem solid $color-coffe;
+    }
+
+    .menu-langue {
+      position: absolute;
+      bottom: 5rem;
+      right: 0;
+      left: 0;
+      border: 0.1rem solid $color-coffe;
+      color: $color-coffe;
+      ul {
+        list-style-type: none;
+        li {
+          padding: 1rem 0;
+
+          &:not(:last-child) {
+            border-bottom: 0.1rem solid $color-coffe;
+          }
+
+          &:hover {
+            background-color: $color-yellow;
+          }
+        }
+      }
+    }
+  }
+}

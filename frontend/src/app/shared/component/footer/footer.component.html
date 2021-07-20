@@ -1,0 +1,19 @@
+<div class="footer" *ngIf="!isLoggedIn()">
+
+  <span class="center">Copyright &copy; {{year}} Léo Vetter</span>
+  <a href="mailto:app.helenos@gmail.com" class="center">app.helenos@gmail.com</a>
+
+  <button (click)="showLangue = !showLangue" [@scaleOut]="scaleOut ? 'hover' : 'leave'" (mouseenter)="scaleOut = !scaleOut"
+          (mouseleave)="scaleOut = !scaleOut"> 
+    {{ 'langue' | translate }}
+
+    <div class="triangle" *ngIf="showLangue"></div>
+
+    <div *ngIf="showLangue" class="menu-langue">
+      <ul>
+        <li (click)="switchLangue('fr')">Français</li>
+        <li (click)="switchLangue('en')">English</li>
+      </ul>
+    </div>
+  </button>
+</div>

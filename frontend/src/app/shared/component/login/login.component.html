@@ -1,0 +1,46 @@
+<form role="form" (ngSubmit)="login()" class="login-form" [formGroup]="loginForm" #loginFormId="ngForm">
+  <div class="login-form-container">
+
+    <h3>{{ 'login' | translate }}</h3>
+
+    <mat-form-field>
+      <input type="text" required matInput i18n-placeholder placeholder="{{ 'email' | translate }}" name="email"
+        formControlName="email">
+    </mat-form-field>
+
+    <mat-error *ngIf="(loginForm.get('email').touched || loginFormId.submitted) && loginForm.get('email').errors">
+      <small *ngIf="loginForm.get('email').hasError('required')" i18n>
+        {{ 'emailRequired' | translate }}
+      </small>
+      <small *ngIf="loginForm.get('email').hasError('email')" i18n>
+        {{ 'emailPattern' | translate }}
+      </small>
+    </mat-error>
+
+    <mat-form-field>
+      <input required type="password" matInput i18n-placeholder placeholder="{{ 'password' | translate }}"
+        name="password" formControlName="password">
+    </mat-form-field>
+
+    <mat-error
+      *ngIf="(loginForm.get('password').touched || loginFormId.submitted) && loginForm.get('password').errors">
+      <small *ngIf="loginForm.get('password').hasError('required')" i18n>
+        {{ 'passwordRequired' | translate }}
+      </small>
+    </mat-error>
+
+    <mat-error *ngIf="errorMessage">
+      <small i18n>
+        {{ 'badCredentials' | translate }}
+      </small>
+    </mat-error>
+
+    <mat-checkbox class="remember-me" name="rememberMe" formControlName="rememberMe">
+      {{ 'rememberMe' | translate }}</mat-checkbox>
+    <hr>
+    <div>
+      <p><u (click)="forgotPassword()">{{ 'passwordForgotten' | translate }}</u></p>
+      <button mat-stroked-button color="accent" i18n>{{ 'submit' | translate }}</button>
+    </div>
+  </div>
+</form>

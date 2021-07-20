@@ -1,0 +1,330 @@
+@import '../../../../variables.scss';
+@import '../../../../mixins.scss';
+
+.popup {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba($color-black, .8);
+    z-index: 9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    .close-image {
+      position: absolute;
+      top: 2%;
+      right: 2%;
+      cursor: pointer;
+      color: $color-white;
+    }
+
+    .image-editor {
+      position: absolute;
+      top: 2%;
+      right: 10%;
+      cursor: pointer;
+      color: $color-white;
+
+      &.disabled {
+        color: $color-grey-3;
+        cursor: default;
+      }
+    }
+
+    .play-image {
+      position: absolute;
+      top: 2%;
+      right: 6%;
+      cursor: pointer;
+      color: $color-white;
+
+      &.disabled {
+        color: $color-grey-3;
+        cursor: default;
+      }
+    }
+  
+    .media-box {
+      width: 60%;
+      height: 100vh;
+      position: relative;
+  
+      .left-image {
+  
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 10%;
+        cursor: pointer;
+        color: $color-white;
+      }
+    
+      .right-image {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 10%;
+        cursor: pointer;
+        color: $color-white;
+      }
+    
+      sh-secured-media {
+      
+        ::ng-deep img {
+          max-height: 95%;
+          width: 50%;
+          height: auto;
+          @include absCenter;
+        }
+
+        ::ng-deep audio {
+          width: 50%;
+          height: auto;
+          @include absCenter;
+        }
+        
+        ::ng-deep video {
+          width: 50%;
+          height: auto;
+          @include absCenter;
+        }
+      }
+
+      .youtube-player {
+        @include absCenter;
+      }
+    
+      .caption {
+        color: $color-opal;
+        text-align: center;
+        margin-bottom: 2rem;
+        margin-top: 1rem;
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+  
+    .comments-box {
+      width: 40%;
+      height: 100vh;
+  
+      .like-comment {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20%;
+        color: white;
+        background-color: $color-grey-light;
+        width: 80%;
+  
+        .like {
+          cursor: pointer;
+          border-radius: 5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0 5px;
+          color: $color-earth;
+          margin: 5px 0;
+  
+          &:hover {
+            background-color: $color-grey-3;
+          }
+  
+          span {
+            margin-left: 1rem;
+          }
+        }
+  
+        .comment {
+          cursor: pointer;
+          border-radius: 5px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-left: 6rem;
+          padding: 0 5px;
+          color: $color-earth;
+          margin: 5x 0;
+  
+          &:hover {
+            background-color: $color-grey-3;
+          }
+  
+          span {
+            margin-left: 1rem;
+          }
+        }
+  
+        
+      }
+
+      .comments-list-my-comment {
+        height: 60%;
+
+        .comments-list {
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          width: 80%;
+          margin-top: 1rem;
+          background-color: $color-grey-light;
+          max-height: 100%;
+          overflow: auto;
+          scrollbar-width: thin;
+
+          .comment {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            margin-top: 1rem;
+
+            &:last-child {
+              margin-bottom: 1rem;
+            }
+  
+            img {
+              border: 1px solid $color-black;
+            }
+  
+            ::ng-deep img {
+              width: 5rem;
+              height: 5rem;
+              border-radius: 50%;
+              margin-left: 1rem;
+            }
+  
+            .fullName-text {
+              margin-left: 1rem;
+              border-radius: 2rem;
+              background-color: $color-grey-3;
+              color: $color-white;
+              padding: 5px 1rem;
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              justify-content: center;
+  
+              .fullName {
+                font-weight: bold;
+              }
+            }
+          }
+        }
+
+        .my-comment {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          background-color: $color-grey-light;
+          margin-top: 1rem;
+          width: 80%;
+          padding-top: 5px;
+
+          ::ng-deep img {
+            width: 5rem;
+            height: 5rem;
+            border-radius: 50%;
+            margin-left: 1rem;
+            border-radius: 50%;
+            border: 1px solid $color-black;
+          }
+
+          .text-comment {
+            background-color: $color-grey-3;
+            padding-left: 1rem;
+            margin-left: 1rem;
+            border-radius: 2rem;
+            height: 4rem;
+            width: 80%;
+            border: none;
+          }
+        }
+      }
+      
+    }
+  }
+  
+  .popup-video {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba($color-black, .8);
+    z-index: 9;
+  
+    .close-video {
+      position: absolute;
+      top: 2%;
+      right: 2%;
+      cursor: pointer;
+      color: $color-white;
+    }
+  
+    .left-video {
+  
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 10%;
+      cursor: pointer;
+      color: $color-white;
+    }
+  
+    .right-video {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 10%;
+      cursor: pointer;
+      color: $color-white;
+    }
+  
+    .popup-content {
+      width: 50%;
+      display: inline-block;
+      background-color: $color-grey-light;
+      box-shadow: 0 2rem 4rem rgba($color-black, .2);
+      @include absCenter;
+  
+      .close-popup {
+        position: absolute;
+        top: 2%;
+        right: 2%;
+        cursor: pointer;
+      }
+  
+      .center {
+        width: 40%;
+        margin-left: 10%;
+        position: relative;
+  
+        .youtube-player {
+          text-align: center;
+          margin-top: 50px;
+        }
+  
+        sh-secured-media {
+  
+          ::ng-deep video {
+            width: 100%;
+            height: min-content;
+            margin-top: 5rem;
+          }
+        }
+  
+        .caption {
+          color: $color-opal;
+          text-align: center;
+          margin-bottom: 2rem;
+          margin-top: 1rem;
+        }
+      }
+    }
+  }

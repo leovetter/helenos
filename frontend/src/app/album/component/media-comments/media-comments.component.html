@@ -1,0 +1,95 @@
+<div class="popup">
+
+  <fa-icon [icon]="faImage" 
+      class="icon fa-2x image-editor"
+      [ngClass]="{disabled: media.type !== 'image'}"
+      (click)="goImageEditor()"></fa-icon>
+
+    <fa-icon [icon]="faPlayCircle" 
+      class="icon fa-2x play-image"
+      [ngClass]="{disabled: media.type !== 'sound'}"
+      (click)="goPlayer()"></fa-icon>
+
+    <fa-icon [icon]="faTimes" 
+      class="icon fa-2x close-image" 
+      (click)="closeMedia()"></fa-icon>
+
+    <div class="media-box">
+
+      <fa-icon [icon]="faChevronLeft"
+             class="icon fa-2x left-image"
+             (click)="leftMedia(media.id)"></fa-icon>
+
+      <fa-icon [icon]="faChevronRight"
+              class="icon fa-2x right-image" 
+              (click)="rightMedia(media.id)"></fa-icon>
+
+      <!-- Modal Content (The Image) -->
+      <sh-secured-media *ngIf="media && media.type == 'image'" 
+        class="modal-content"
+        [type]="'image'"
+        [src]="media.path | formatSrc:album.title:album.ownedUserId"
+        [load]="true"
+        [isIntersecting]="true">
+      </sh-secured-media>
+
+      <sh-secured-media *ngIf="media && media.type == 'sound'"
+          class="secured-media"
+          [type]="'sound'"
+          [controls]="true"
+          [src]="media.path | formatSrc:album.title:album.ownedUserId"
+          [load]="true"
+          [isIntersecting]="true">
+      </sh-secured-media>
+
+      <sh-secured-media *ngIf="media && media.type == 'video' && !media.fromApi" 
+        class="modal-content"
+        [type]="'video'"
+        [src]="media.path | formatSrc:album.title:album.ownedUserId"
+        [controls]="true"
+        [load]="true"
+        [isIntersecting]="true">
+      </sh-secured-media>
+
+      <div class="youtube-player" *ngIf="media && media.type == 'video' && media.fromApi">
+        <div id="player"></div>
+      </div>
+
+      <!-- Modal Caption (Media Text) -->
+      <div class="caption">{{media.name}}</div>      
+    </div>
+
+    <div class="comments-box">
+
+      <div class="like-comment">
+        <div class="like">
+          <fa-icon [icon]="faThumbsUp"></fa-icon><span class="like">{{ 'like' | translate}}</span>
+        </div>
+        <div (click)="focusNewComment()" class="comment">
+          <fa-icon [icon]="faComment"></fa-icon><span class="like">{{ 'comment' | translate}}</span>
+        </div>
+      </div>
+
+      <div class="comments-list-my-comment">
+
+        <div class="comments-list">
+            <div class="comment" *ngFor="let comment of media.comments">
+              <img *ngIf="!comment?.picture" src="../../../../assets/images/question-mark-512.png">
+              <sh-secured-media *ngIf="comment.picture" [src]="comment?.picture | formatSrc:'profil':comment.idUser" [type]="'image'" [load]="true" [isIntersecting]="true"></sh-secured-media>
+              <div class="fullName-text">
+                <span class="fullName">{{comment.firstName}} {{comment.lastName}}</span>
+                <span class="text">{{comment.text}}</span>
+              </div>
+            </div>
+        </div>
+
+        <div class="my-comment">
+          <img *ngIf="!user?.picture" src="../../../../assets/images/question-mark-512.png">
+          <sh-secured-media *ngIf="user?.picture" [src]="user?.picture | formatSrc:'profil'" [type]="'image'" [load]="true" [isIntersecting]="true"></sh-secured-media>
+          <input #textComment type="text" class="text-comment" [placeholder]="'writeYourComment' | translate" [(ngModel)]="commentUser"(keyup)="addComment($event)">
+        </div>
+        
+      </div>
+    </div>
+    
+</div>

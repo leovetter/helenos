@@ -1,0 +1,13 @@
+<div class="content">
+
+  <div class="wizard">
+    <span [ngStyle]="infoStyle()" class="add-library-span">{{'addLibrary' | translate}}</span>
+    <div class="arrow"></div>
+    <span [ngStyle]="shareStyle()"class="share-library-span">{{'addUsersLibrary' | translate}}</span>
+  </div>
+  <router-outlet #o="outlet"></router-outlet>
+  
+</div>
+
+
+

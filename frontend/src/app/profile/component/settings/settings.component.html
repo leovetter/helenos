@@ -1,0 +1,67 @@
+<div class="content">
+
+    <fieldset class="language-fieldset">
+        <legend i18n>{{ 'langue' | translate }}</legend>
+
+        <span class="langue" *ngIf="!showEditLangue">{{ 'currentLangue' | translate }} {{ langue }}</span>
+        <select *ngIf="showEditLangue" [(ngModel)]="langue" class="select-langue">
+            <option value="fr">fr</option>
+            <option  value="en">en</option>
+        </select>
+        <button class="save-langue" (click)="saveLangue()"*ngIf="showEditLangue">{{ 'save' | translate }}</button>
+        <button class="edit-langue" (click)="showEditLangue = !showEditLangue" *ngIf="!showEditLangue">{{ 'edit' | translate }}</button>
+        
+    </fieldset>
+
+    <form role="form" class="password-form" #passwordFormmId="ngForm" [formGroup]="passwordForm">
+
+        <fieldset class="password-fieldset">
+            <legend i18n>{{ 'changePassword' | translate }}</legend>
+    
+            <div formGroupName="passwordGroup" class='group-fields'>
+                <mat-form-field>
+                    <input #password matInput type="password" i18n-placeholder placeholder="{{ 'oldPassword' | translate }}" name="oldPassword" formControlName="oldPassword">
+                </mat-form-field>
+    
+                <mat-form-field>
+                    <input #password matInput type="password" i18n-placeholder placeholder="{{ 'newPassword' | translate }}" name="password" formControlName="password">
+                </mat-form-field>
+    
+                <mat-form-field>
+                    <input #repeatPassword matInput type="password" i18n-placeholder placeholder="{{ 'repeatPassword' | translate }}" name="repeatPassword" formControlName="repeatPassword">
+                </mat-form-field>
+
+                <mat-error *ngIf="(passwordForm.get('passwordGroup').get('oldPassword').touched || passwordFormmId.submitted) && passwordForm.get('passwordGroup').get('oldPassword').errors">
+                    <span *ngIf="passwordForm.get('passwordGroup').get('oldPassword').hasError('required')" i18n>
+                        {{ 'passwordRequired' | translate }}
+                    </span>
+                </mat-error>  
+                
+                <mat-error *ngIf="(passwordForm.get('passwordGroup').get('repeatPassword').touched || passwordFormmId.submitted) && passwordForm.get('passwordGroup').errors">
+                    <span *ngIf="passwordForm.get('passwordGroup').hasError('validatePassword')" i18n>
+                        {{ 'passwordMustMatch' | translate }}
+                    </span>
+                </mat-error>   
+
+                <mat-error *ngIf="(passwordForm.get('passwordGroup').get('password').touched || passwordFormmId.submitted) && passwordForm.get('passwordGroup').get('password').errors">
+                    <span *ngIf="passwordForm.get('passwordGroup').get('password').hasError('pattern')" i18n>
+                      {{ 'passwordPattern' | translate }}
+                    </span>
+                    <span *ngIf="passwordForm.get('passwordGroup').get('password').hasError('minlength')" i18n>
+                        {{ 'minLengthPassword' | translate }}
+                    </span>
+                  </mat-error>
+
+            </div>
+    
+            
+        </fieldset>
+
+        <button mat-button color="accent" i18n (click)="savePassword()" class="save-password">{{ 'submit' | translate }}</button>
+
+    </form>
+    
+
+    
+
+</div>

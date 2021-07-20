@@ -1,0 +1,144 @@
+<div class="popup">
+
+    <fa-icon [icon]="faTimes" 
+        class="icon fa-2x close-image" 
+        (click)="closeEditor()"></fa-icon>
+
+    <div class="image-menu">
+
+        <div class="image-box">
+
+            <div class="crop-mode" helCrop *ngIf="cropMode">
+
+                <div class="top-left"></div>
+                <div class="top"></div>
+                <div class="top-right"></div>
+                <div class="right"></div>
+                <div class="bottom-right"></div>
+                <div class="bottom"></div>
+                <div class="bottom-left"></div>
+                <div class="left"></div>
+
+            </div>
+
+            <img [src]="'http://res.cloudinary.com/helenos/image/upload/'+publicId" alt="" class="image">
+        </div>
+        
+        <div class="menu-transformation" [formGroup]="transformationForm">
+
+            <div class="transformations">
+
+                <h1>Transformations Menu</h1>
+
+                <div class="crop-resize">
+
+                    <label class="crop-label">Crop</label>
+                    <input type="checkbox" value="" formControlName="crop">
+
+                </div>
+                
+                
+                <div class="color-header header">
+                    <h2>Color effects</h2>
+
+                    <fa-icon [icon]="faChevronUp" *ngIf="!shoColorMenu"
+                        class="icon fa-2x" 
+                        (click)="shoColorMenu = !shoColorMenu"></fa-icon>
+
+                    <fa-icon [icon]="faChevronDown" *ngIf="shoColorMenu"
+                        class="icon fa-2x" 
+                        (click)="shoColorMenu = !shoColorMenu"></fa-icon>
+                </div>
+                <hr>
+                <div class="color-menu menu" *ngIf="shoColorMenu" formGroupName="color">
+
+                    <label class="color-effect">{{ 'color-effect' | translate }}</label>
+                    <select formControlName="selectedColorEffects">
+                        <option *ngFor="let effect of colorEffects">{{effect}}</option>
+                    </select>
+
+                    <div class="color-level" *ngIf="applyColorLevel()">
+                        <label class="level">Level</label>
+                        <input type="number" value="100" formControlName="level">
+                    </div>
+
+                    <div class="color-blend" *ngIf="applyColorBlend()">
+                        <label class="blen">Blend percentage</label>
+                        <input type="number" value="100" formControlName="blend">
+                    </div>
+
+                </div>
+
+                <div class="blur-header header">
+                    <h2>Blurring, pixelating and sharpening effects</h2>
+
+                    <fa-icon [icon]="faChevronUp" *ngIf="!showBlurMenu"
+                        class="icon fa-2x" 
+                        (click)="showBlurMenu = !showBlurMenu"></fa-icon>
+
+                    <fa-icon [icon]="faChevronDown" *ngIf="showBlurMenu"
+                        class="icon fa-2x" 
+                        (click)="showBlurMenu = !showBlurMenu"></fa-icon>
+                </div>
+                <hr>
+                <div class="blur-menu menu" *ngIf="showBlurMenu" formGroupName="blur">
+
+                    <label class="blur-effect">Effets</label>
+                    <select formControlName="selectedBlurEffects">
+                        <option *ngFor="let effect of blurEffects">{{effect}}</option>
+                    </select>
+
+                    <div class="blur" *ngIf="transformationForm.get('blur').get('selectedBlurEffects').value === 'blur'">
+                        <label class="strength">Strength</label>
+                        <input type="number" value="100" formControlName="blurStrength">
+                    </div>
+
+                    <div class="sharpen" *ngIf="transformationForm.get('blur').get('selectedBlurEffects').value === 'sharpen'">
+                        <label class="strength">Strength</label>
+                        <input type="number" value="100" formControlName="sharpenStrength">
+                    </div>
+
+                    <div class="pixelate" *ngIf="transformationForm.get('blur').get('selectedBlurEffects').value === 'pixelate'">
+                        <label class="square_size">Strength</label>
+                        <input type="number" value="100" formControlName="pixelateSquare">
+                        <label class="pixelate-default">Default</label>
+                        <input type="checkbox" value="" formControlName="pixelateDefault">
+                    </div>
+
+                    <div class="vignette" *ngIf="transformationForm.get('blur').get('selectedBlurEffects').value === 'vignette'">
+                        <label class="level">Level</label>
+                        <input type="number" value="20" formControlName="vignetteLength">
+                    </div>
+                </div>
+            </div>
+
+            <!-- <label class="face-detection">{{ 'face-detection' | translate }}</label>
+            <input type="checkbox" value="face" [(ngModel)]="faceDetect"> -->
+            
+            <div class="buttons">
+
+                <button class="save-button" (click)="save()">
+                    Save
+                </button>
+    
+                <button class="transform-button" (click)="transform()">
+                    Transform
+                </button>
+
+                <button class="restore-button" (click)="restore()">
+                    Restore
+                </button>
+
+            </div>
+            
+    
+        </div>
+    </div>
+    
+
+   
+    
+
+</div>
+
+

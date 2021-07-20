@@ -1,0 +1,71 @@
+<div *ngIf="currentAudio" class="playlist-player" [ngClass]="{up: showPlaylist}"> 
+    <!-- (after-loading)="hidePlayer = !hidePlayer" -->
+    <!-- appOnLoadingPlayer -->
+    <!-- [@showHidePlayer]="hidePlayer ? 'hide' : 'show'" -->
+
+    <div class="player">
+
+        <img src="../assets/images/vinyle.jpg" alt="audio-cover" id="cover">
+        
+        <sh-secured-media
+            class="secured-media"
+            [type]="'sound'"
+            [controls]="false"
+            [src]="currentAudio.path | formatSrc:currentAudio.library.title:currentAudio.library.ownedUserId"
+            [load]="true"
+            [isIntersecting]="true">
+        </sh-secured-media>
+
+        <div class="progress-name">
+
+            <div class="progress-container" (click)="setProgress($event)">
+                <div id="progress">
+                </div>
+            </div>
+            <span>{{currentAudio.name}}</span>
+
+        </div>
+    
+
+        <fa-icon [icon]="faBackward" 
+                class="icon fa-2x audio-change audio-left" 
+                (click)="leftAudio(currentAudio.id)"></fa-icon>
+
+        <fa-icon [icon]="faPause" *ngIf="isPlaying"
+                class="icon fa-2x audio-change" 
+                (click)="pauseAudio()"></fa-icon>
+
+        <fa-icon [icon]="faPlay" *ngIf="!isPlaying"
+                class="icon fa-2x audio-change" 
+                (click)="playAudio()"></fa-icon>
+
+        <fa-icon [icon]="faForward" 
+                class="icon fa-2x audio-change" 
+                (click)="rightAudio(currentAudio.id)"></fa-icon>
+
+        <fa-icon [icon]="faTimes" 
+                class="icon fa-2x audio-change audio-right" 
+                (click)="stopPlayer()"></fa-icon>
+
+        <div class="up-audio"  (click)="showPlaylist = !showPlaylist">
+            
+            <fa-icon [icon]="faChevronUp" *ngIf="!showPlaylist"
+            class="icon fa-2x audio-up"></fa-icon>
+            <fa-icon [icon]="faChevronUp" *ngIf="!showPlaylist"
+            class="icon fa-2x audio-up"></fa-icon>
+
+            <fa-icon [icon]="faChevronDown" *ngIf="showPlaylist"
+            class="icon fa-2x audio-up"></fa-icon>
+            <fa-icon [icon]="faChevronDown" *ngIf="showPlaylist"
+            class="icon fa-2x audio-up"></fa-icon>
+        </div>
+        
+
+    </div>
+
+    <div class="playlist">
+        <div class="sound" *ngFor="let sound of audioContext?.library.medias" (click)="setCurrentAudio(sound)">
+            <span class="name">{{sound.name}}</span>
+        </div>
+    </div>
+</div>

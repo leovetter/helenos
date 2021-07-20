@@ -1,0 +1,50 @@
+@import '../../../../variables.scss';
+@import '../../../../mixins.scss';
+
+.content {
+  background-color: $color-grey-light;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding-top: 2rem;
+
+  .wizard {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .wizard span {
+      background: $color-earth;
+      padding: 10px 40px 10px;
+      color: $color-white;
+  }
+  
+  .add-library-span {
+    border-radius: 10px 0 0 0;
+  }
+  
+  .share-library-span {
+    border-radius: 0 10px 0 0;
+  }
+  
+  .arrow {
+    border: solid;
+    border-color: $color-grey-light;
+    border-width: 0 5px 5px 0;
+    // display: inline-block;
+    padding: 3px;
+    height: 45px;
+    width: 45px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    position: absolute;
+    left: 46%;
+
+    @include respond(phone) {
+      left: 41%;
+    }
+  }
+}
+

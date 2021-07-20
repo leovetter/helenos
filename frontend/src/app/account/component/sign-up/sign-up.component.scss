@@ -1,0 +1,71 @@
+@import '../../../../variables.scss';
+@import '../../../../mixins.scss';
+
+* {
+  font-family: 'Fjalla One', sans-serif;
+}
+
+.sign-up-form {
+  margin-top: 1%;
+  padding-top: 2rem;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 1%;
+  background-color: $color-grey-light;
+  .sign-up-form-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20%;
+    width: 60%;
+    h3 {
+      color: $color-opal;
+      text-align: center;
+      margin-top: 1%;
+    }
+  }
+  .icon {
+    margin-right: 5px;
+    color: $color-opal;
+  }
+  @include inputStyle;
+  .password-field {
+    width: 100%;
+  }
+
+  .drive-social {
+    display: flex;
+    align-items: center;
+
+    .checkbox {
+      text-align: left;
+      font-size: medium;
+      color: $color-grey-2;
+
+      &:first-child {
+        margin-right: 1rem;
+
+      }
+      
+      ::ng-deep .mat-checkbox-inner-container {
+        border: 1px solid $color-grey-2;
+        border-radius: 1px;
+      }
+    }
+    ::ng-deep .mat-checkbox-background {
+      background-color: $color-grey-light;
+    }
+    ::ng-deep .mat-checkbox-checkmark-path {
+      stroke: $color-grey-2 !important;
+    }
+  }
+  
+
+
+  button {
+    width: 30%;
+    margin-left: auto;
+    border: 1px solid $color-opal !important;
+    color: $color-opal;
+    margin-bottom: 2rem;
+  }
+}

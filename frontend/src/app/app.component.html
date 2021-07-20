@@ -1,0 +1,8 @@
+<!-- The header with a background image, a logo, some heading text and navigation button -->
+<sh-navbar *ngIf="settings?.driveSocial === 'social'"></sh-navbar>
+
+<router-outlet></router-outlet>
+
+<sh-smart-player *ngIf="player"></sh-smart-player>
+
+<sh-footer></sh-footer>

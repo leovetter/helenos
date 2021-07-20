@@ -1,0 +1,91 @@
+<div class="content">
+
+    <form role="form" class="account-form" #accountFormmId="ngForm" [formGroup]="accountForm">
+        <div class="account-form-container">
+    
+            <h3 i18n>{{ 'accountParameters' | translate }}</h3>
+    
+            <div class="upload-file-container">
+                
+                <div class="profile-container">
+                    <div class="image-container" (click)="fileInput.click()">
+                        <img *ngIf="!_user?.picture" src="../../../../assets/images/question-mark-512.png">
+                        <sh-secured-media *ngIf="_user?.picture" [src]="_user?.picture | formatSrc:'profil'" [type]="'image'" [load]="true" [isIntersecting]="true"></sh-secured-media>
+                        <input hidden type="file" accept="image/*" #fileInput (change)="onFileChange($event.target.files)">
+                    </div>
+    
+                    <span i18n>{{ 'profilePicture' | translate }}</span>
+                </div>
+            </div>
+    
+            <fieldset>
+                <legend i18n>{{ 'informations' | translate }}</legend>
+    
+                <div formGroupName="infosGroup" class="group-fields">
+    
+                    <mat-form-field>
+                        <input required #firstName matInput i18n-placeholder placeholder="{{ 'firstName' | translate }}" name="firstName" formControlName="firstName">
+                    </mat-form-field>
+        
+                    <mat-error *ngIf="(accountForm.get('infosGroup').get('firstName').touched || accountFormmId.submitted) && accountForm.get('infosGroup').get('firstName').errors">
+                        <span *ngIf="accountForm.get('infosGroup').get('firstName').hasError('required')" i18n>
+                            {{ 'firstNameRequired' | translate }}
+                        </span>
+                    </mat-error>
+        
+                    <mat-form-field>
+                        <input required #lastName matInput i18n-placeholder placeholder="{{ 'lastName' | translate }}" name="lastName" formControlName="lastName">
+                    </mat-form-field>
+        
+                    <mat-error *ngIf="(accountForm.get('infosGroup').get('lastName').touched || accountFormmId.submitted) && accountForm.get('infosGroup').get('lastName').errors">
+                        <span *ngIf="accountForm.get('infosGroup').get('lastName').hasError('required')" i18n>
+                            {{ 'lastNameRequired' | translate }}
+                        </span>
+                    </mat-error>
+        
+                    <mat-form-field>
+                        <input required matInput type="email" i18n-placeholder placeholder="{{ 'email' | translate }}" name="email" formControlName="email" readonly>
+                    </mat-form-field>
+        
+                    <mat-error *ngIf="(accountForm.get('infosGroup').get('email').touched || accountFormmId.submitted) && accountForm.get('infosGroup').get('email').errors">
+                        <span *ngIf="accountForm.get('infosGroup').get('email').hasError('required')" i18n>
+                            {{ 'emailRequired' | translate }}
+                        </span>
+                    </mat-error>
+                </div>
+    
+            </fieldset>
+    
+            <button mat-button color="accent" i18n (click)="saveInfos()">{{ 'submit' | translate }}</button>
+    
+            <fieldset>
+                <legend i18n>{{ 'changePassword' | translate }}</legend>
+    
+                <div formGroupName="passwordGroup" class='group-fields'>
+                    <mat-form-field>
+                        <input #password matInput type="password" i18n-placeholder placeholder="{{ 'oldPassword' | translate }}" name="oldPassword" formControlName="oldPassword">
+                    </mat-form-field>
+        
+                    <mat-form-field>
+                        <input #password matInput type="password" i18n-placeholder placeholder="{{ 'newPassword' | translate }}" name="password" formControlName="password">
+                    </mat-form-field>
+        
+                    <mat-form-field>
+                        <input #repeatPassword matInput type="password" i18n-placeholder placeholder="{{ 'repeatPassword' | translate }}" name="repeatPassword" formControlName="repeatPassword">
+                    </mat-form-field>
+                    
+                    <mat-error *ngIf="(accountForm.get('passwordGroup').get('repeatPassword').touched || accountFormmId.submitted) && accountForm.get('passwordGroup').errors">
+                        <span *ngIf="accountForm.get('passwordGroup').hasError('validatePassword')" i18n>
+                            {{ 'passwordMustMatch' | translate }}
+                        </span>
+                    </mat-error>   
+                </div>
+    
+                
+            </fieldset>
+    
+            <button mat-button color="accent" i18n (click)="savePassword()">{{ 'submit' | translate }}</button>
+        </div>
+    </form>
+
+</div>

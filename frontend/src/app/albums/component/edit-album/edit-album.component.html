@@ -1,0 +1,44 @@
+<h3 i18n>{{ 'editLibrary' | translate }}</h3>
+
+<form role="form"
+      (ngSubmit)="updateLibrary()"
+      class="edit-library-form"
+      #editLibraryFormElement="ngForm"
+      [formGroup]="editLibraryForm">
+
+      <mat-checkbox class="private-checkbox" name="isPublic" formControlName="isPublic">
+        {{ 'publicLibrary' | translate }}
+      </mat-checkbox>
+    
+    <mat-form-field>
+      <input required matInput i18n-placeholder placeholder="{{ 'title' | translate }}" name="title" formControlName="title">
+    </mat-form-field>
+
+    <mat-error *ngIf="(editLibraryForm.get('title').touched || editLibraryFormElement.submitted) && editLibraryForm.get('title').errors">
+      <small *ngIf="editLibraryForm.get('title').hasError('required')" i18n>
+        {{ 'titleRequired' | translate }}
+      </small>
+      <br>
+      <br>
+    </mat-error>
+
+    <div class="album-cover">
+      <sh-secured-media *ngIf="library?.cover && !coverFile"
+                        [src]="library?.cover | formatCover:library.title:library.ownedUserId"
+                        [type]="'image'" 
+                        [load]="true" 
+                        [isIntersecting]="true">
+      </sh-secured-media>
+      <img id="img-cover" src="" *ngIf="!library?.cover || coverFile">
+      <button (click)="editCover($event)">
+        <fa-icon [icon]="faCamera" class="icon fa-2x"></fa-icon>
+        <span>{{ 'insertCover' | translate }}</span>
+      </button>
+      <input hidden type="file" accept="image/*" id="cover-input" (change)="onCoverChange($event.target.files)">
+    </div>
+    <br>
+    <button mat-stroked-button color="accent" class="save-button" i18n>{{ 'submit' | translate }}</button>
+</form>
+    
+    
+

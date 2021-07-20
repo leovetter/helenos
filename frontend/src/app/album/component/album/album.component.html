@@ -1,0 +1,136 @@
+<section>
+
+  <div class="actions-grid">
+
+    <div class="actions">
+      <fa-icon [icon]="faPlusCircle" class="icon fa-2x add-media-icon"
+                                    (click)="showAddMediaPopup = !showAddMediaPopup"
+                                    *ngIf="!isPerson && !shared">
+      </fa-icon>
+      <fa-icon [icon]="faCloudDownloadAlt" class="icon fa-2x download-icon"
+                                    (click)="downloadAlbum()">
+      </fa-icon>
+    </div>
+
+    <div class="medias-container" [formGroup]="libraryGroup">
+
+      <mat-form-field class="sort-select">
+        <mat-label>{{ 'sorteBy' | translate}}</mat-label>
+        <mat-select [(value)]="selectedSort" (selectionChange)="editSelectedSort()">
+          <mat-option *ngFor="let sort of sorting" [value]="sort.key">
+            {{sort.value}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+      <mat-form-field class="search-media">
+        <input matInput i18n-placeholder
+               placeholder="{{ 'searchMedia' | translate }}"
+               formControlName="searchMedia">
+      </mat-form-field>
+    
+      <hr>
+    
+      <div class="list-container">
+        <mat-grid-list [cols]="calculCols()" rowHeight="1:1" gutterSize="30" class="large-list">
+    
+          <mat-grid-tile [id]="'file-' + i" *ngFor="let media of library?.medias ; let i = index" draggable="true"  (dragstart)="drag(i, $event)" (drop)="drop($event)" (dragover)="allowDrop($event)" (dragleave)="onDragLeave($event)">
+
+            <div class="first-side">
+
+              <sh-secured-media *ngIf="media.type === 'image'"
+                                [src]="media.path | formatSrc:library.title:library.ownedUserId"
+                                [load]="canLoadForLargeScreen()"
+                                [isIntersecting]="media.isIntersecting"
+                                [type]="'image'"
+                                lbLazyLoadingMedia
+                                [data-src]="media.path"
+                                [data-id]="media.id"
+                                (urlChanged)="editUrl($event)">
+              </sh-secured-media>
+              <sh-secured-media *ngIf="media.type === 'video' && !media.fromApi" 
+                                [src]="media.path | formatSrc:library.title:library.ownedUserId"
+                                [load]="true"
+                                [isIntersecting]="media.isIntersecting"
+                                [type]="'video'"
+                                lbLazyLoadingMedia
+                                [data-src]="media.path"
+                                [data-id]="media.id"
+                                [controls]="false"
+                                (urlChanged)="editUrl($event)">
+                </sh-secured-media>
+              <img *ngIf="media.type === 'video' && media.fromApi" 
+                    class="cover"
+                    [src]="media.cover"
+                    lbLazyLoadingMedia
+                    (urlChanged)="editUrl($event)">
+              
+              <ng-container *ngIf="media.type === 'sound'">
+                <div class="audio-icon">
+                  <fa-icon [icon]="faAudioDescription" class="icon fa-10x"></fa-icon>
+                </div>
+              </ng-container>
+              <mat-grid-tile-footer>{{ media.name }}</mat-grid-tile-footer>
+
+            </div>
+
+            <div class="second-side">
+              
+              <fa-icon [icon]="faPlay" class="icon fa-5x play-media"
+                                       (click)="idSelectedMedia = media.id"></fa-icon>
+
+              <fa-icon [icon]="faTrash" class="icon fa-2x delete-media-button"
+                                        (click)="deleteMedia(media)"
+                                        *ngIf="!isPerson && !shared"></fa-icon>
+
+              <fa-icon [icon]="faEdit" class="icon fa-2x edit-media-button"
+                                       (click)="setEditMedia(media)"
+                                       *ngIf="!isPerson && !shared"></fa-icon>
+
+            </div>
+          </mat-grid-tile>
+      
+        </mat-grid-list>
+      </div>
+    </div>
+
+    <div class="shared-users" *ngIf="sharedUsers">
+      <span class="shared-with">{{ 'sharedWith' | translate }}</span>
+      <div class="shared-users-list">
+        <div class="shared-user" *ngFor="let user of sharedUsers">
+          <img *ngIf="!user?.picture" src="../../../../assets/images/question-mark-512.png">
+          <sh-secured-media *ngIf="user?.picture" [src]="user?.picture | formatSrc:'profil':user.id" [type]="'image'" [load]="true" [isIntersecting]="true"></sh-secured-media>
+          <span class="name">{{ user.firstName }} {{ user.lastName }}</span>
+        </div>
+        <span class="no-shared-users" *ngIf="sharedUsers.length === 0">{{ 'noOne' | translate }}</span>
+      </div>
+      <fa-icon [icon]="faUserPlus" class="fa-2x" (click)="showPopupSharedUsers = !showPopupSharedUsers"></fa-icon>
+    </div>
+  </div>
+
+</section>
+
+<sh-popup  *ngIf="showEditPopup" (hidePopup)="showEditPopup = false">
+  <hel-smart-edit-media (hidePopup)="showEditPopup = false"></hel-smart-edit-media>
+</sh-popup>
+
+<sh-popup *ngIf="showDeletePopup" (hidePopup)="showDeletePopup = false">
+  <hel-delete-media (hidePopup)="showDeletePopup = false" [media]="mediaToDelete"></hel-delete-media>
+</sh-popup>
+
+<hel-smart-media-comments *ngIf="idSelectedMedia" [idMedia]="idSelectedMedia" [selectedSort]="selectedSort" (resetIdSelectedMedia)="idSelectedMedia = null" (goImageEditor)="goImageEditor()"></hel-smart-media-comments>
+
+<sh-popup *ngIf="showPopupSharedUsers" (hidePopup)="showPopupSharedUsers = false">
+  <hel-add-shared-users  [albumId]="library.id" (hidePopup)="showPopupSharedUsers = false"></hel-add-shared-users>
+</sh-popup>
+
+<hel-add-medias *ngIf="showAddMediaPopup" (hidePopup)="showAddMediaPopup = false" [library]="library"></hel-add-medias>
+
+<hel-smart-image-editor [titleAlbum]="library.title" 
+                        [nameMedia]="mediaImageEditor.name" 
+                        [pathMedia]="mediaImageEditor.path" 
+                        [urlMedia]="mediaImageEditor.path | formatSrc:library.title:library.ownedUserId" 
+                        *ngIf="showImageEditor" 
+                        (resetShowImageEditor)="resetShowImageEditor()"
+                        (goMediaComments)="goMediaComments()">
+</hel-smart-image-editor>

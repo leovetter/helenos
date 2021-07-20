@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: media-service
+  devtools:
+    restart:
+      enabled: true
+  profiles:
+    active: @activatedProperties@
+  datasource:
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+
+# port
+server:
+  port: 8204

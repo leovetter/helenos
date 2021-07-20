@@ -1,0 +1,37 @@
+<div id="content">
+
+    <div class="pictures">
+  
+      <div class="cover-photo">
+        <sh-secured-media *ngIf="user?.cover" [src]="user?.cover | formatSrc:'cover'" [type]="'image'" [load]="true" [isIntersecting]="true"></sh-secured-media>
+        <button *ngIf="!person" (click)="coverInput.click()">
+          <fa-icon [icon]="faCamera" class="icon fa-2x"></fa-icon>
+          <span>{{ 'insertCover' | translate }}</span>
+          <input hidden type="file" accept="image/*" #coverInput (change)="onCoverChange($event.target.files)">
+        </button>
+      </div>
+  
+      <div class="profil-container">
+        <img *ngIf="!user?.picture" src="../../../../assets/images/question-mark-512.png">
+        <sh-secured-media *ngIf="user?.picture" [src]="user?.picture | formatSrc:'profil':user.id" [type]="'image'" [load]="true" [isIntersecting]="true"></sh-secured-media>
+        <div *ngIf="!person" (click)="pictureInput.click()">
+          <fa-icon [icon]="faCamera" ></fa-icon>
+          <input hidden type="file" accept="image/*" #pictureInput (change)="onPictureChange($event.target.files)">
+        </div>
+        <span class="name">{{ user?.firstName }} {{ user?.lastName}}</span>
+      </div>
+  
+    </div>
+  
+    <div class="tabs">
+      <span *ngIf="!person" [ngClass]="{'active': activeTab === 'myAlbums' && library === null}" (click)="goMyAlbums()">{{ 'albums' | translate }}</span>
+      <span *ngIf="person" [ngClass]="{'active': activeTab === 'myAlbums' && library === null}" (click)="goMyAlbums()">{{ 'personAlbums' | translate }}</span>
+      <span *ngIf="!person" [ngClass]="{'active': activeTab === 'sharedAlbums'}" (click)="goSharedAlbums()">{{ 'sharedAlbums' | translate }}</span>
+      <span id="about-tab" [ngClass]="{'active': activeTab === 'about'}" (click)="goAbout()">{{ 'about' | translate }}</span>
+      <span id="new-album-tab" [ngClass]="{'active': activeTab === 'newAlbum'}" *ngIf="activeTab === 'newAlbum'">{{ 'newAlbum' | translate }}</span>
+      <span [ngClass]="{'active': library !== null}" *ngIf="library !== null">{{ library.title }}</span>
+    </div>
+  
+    <router-outlet></router-outlet>
+  
+</div>

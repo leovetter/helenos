@@ -1,0 +1,90 @@
+@import '../../../../variables.scss';
+@import '../../../../mixins.scss';
+
+h3 {
+    color: $color-opal;
+    text-align: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.edit-library-form {
+    
+    .private-checkbox {
+        color: $color-opal;
+    
+        ::ng-deep .mat-checkbox-inner-container {
+            border: 1px solid $color-grey-2;
+            border-radius: 1px;
+        }
+        ::ng-deep .mat-checkbox-background {
+            background-color: $color-grey-light;
+        }
+        ::ng-deep .mat-checkbox-checkmark-path {
+            stroke: $color-grey-2 !important;
+        }
+    }
+    
+    mat-form-field {
+        width: 100%;
+        margin-top: 2rem;
+    }
+    @include inputStyle;
+    
+    .save-button {
+        color: $color-opal;
+        border: 1px solid $color-opal !important;
+        margin-bottom: 2rem;
+        float: right;
+    }
+    
+    .album-cover {
+        position: relative;
+        height: 20rem;
+        background: linear-gradient(to bottom, #333d45 0%, #1a1d21 100%);
+    
+        sh-secured-media {
+            display: inline-block;
+            height: 100%;
+            width: 100%;
+    
+            ::ng-deep .media-container {
+                position: relative;
+                height: 100%;
+                width: 100%;
+    
+                ::ng-deep img {
+                width: 100%;
+                height: 100%;
+                }
+            }
+        }
+    
+        #img-cover {
+            width: 100%;
+            height: 100%;
+        }
+    
+        button {
+            padding: 2rem;
+            border: 2px solid $color-white;
+            border-radius: 5px;
+            position: absolute;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: transparent;
+            color: $color-white;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+    
+            span {
+                margin-left: 2rem;
+            }
+    
+            &:hover {
+                background-color: rgba(247, 247, 247, 0.3);
+            }
+        }
+    }
+}

@@ -1,0 +1,17 @@
+version: "3.5"
+
+services:
+
+  tomcat-media:
+    container_name: tomcat-media-server
+    image: tomcat-media-server
+    build:
+      context: .
+      dockerfile: tomcat-media.prod.dockerfile
+    ports:
+      - "8204:8204"
+
+networks:
+  default:
+    external:
+      name: helenos-network

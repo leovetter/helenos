@@ -1,0 +1,74 @@
+<main>
+
+  <!-- A section explaining the purpose of the app -->
+  <section class="first-section">
+    <div>
+      <h2 class="heading-secondary">
+        {{ 'homeHeadingFirstSection' | translate }}
+      </h2>
+    </div>
+    
+    <div class="explanation-images">
+
+      <div class="explanation">
+
+        <h3 class="heading-tertiary">
+          {{ 'headingUpload' | translate }}
+        </h3>
+        <p class="paragraph">
+          {{ 'uploadParagraph' | translate }}
+        </p>
+        <h3 class="heading-tertiary">
+          {{ 'headingShare' | translate }}
+        </h3>
+        <p class="paragraph">
+          {{ 'shareParagraph' | translate }}
+        </p>
+
+      </div>
+      
+      <div class="images"
+           [@showRightIcon]="displayThreeImages ? 'display' : 'hide'"
+           accLazyDisplayImg
+           (isIntersecting)="displayThreeImages = $event">
+          <img src="../../../../assets/images/home/watching.jpg" alt="watching videos" class="img-home-1">
+          <img src="../../../../assets/images/home/friends.jpg" alt="friends sharing" class="img-home-2">
+          <img src="../../../../assets/images/home/listening.webp" alt="listening audio" class="img-home-3">
+      </div>
+    </div>
+    
+  </section>
+
+  <hr>
+
+  <!-- A section explaining how to visualize a library -->
+  <section>
+   
+
+    <div class="section-device"
+         [@showLeftIcon]="displayVisualizeLibrary ? 'display' : 'hide'"
+         accLazyDisplayImg
+         (isIntersecting)="displayVisualizeLibrary = $event">
+      
+         <div class="icon-device">
+          <fa-icon [icon]="faMobileAlt" class="icon fa-5x"></fa-icon>
+          <h3>{{ 'onMobile' | translate }}</h3>
+         </div>
+
+         <div class="icon-device">
+          <fa-icon [icon]="faTabletAlt" class="icon fa-5x"></fa-icon>
+          <h3>{{ 'onTablet' | translate }}</h3>
+         </div>
+
+         <div class="icon-device">
+          <fa-icon [icon]="faLaptop" class="icon fa-5x"></fa-icon>
+          <h3>{{ 'onPc' | translate }}</h3>
+         </div>
+
+    </div>
+    
+    <p i18n>{{ 'visualizeLibrary' | translate }}</p>
+
+  </section>
+
+</main>

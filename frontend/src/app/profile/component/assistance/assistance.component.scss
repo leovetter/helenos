@@ -1,0 +1,17 @@
+@import '../../../../variables.scss';
+
+.content {
+    background-color: $color-grey-light;
+    padding-top: 2rem;
+    margin-top: 1rem;
+    padding-bottom: 2rem;
+
+    span {
+        margin-left: 3rem;
+        color: $color-earth;
+    }
+
+    a {
+        color: $color-opal;
+    }
+}

@@ -1,0 +1,30 @@
+@import '../../../../variables.scss';
+@import '../../../../mixins.scss';
+
+
+
+h3 {
+    text-align: center;
+    margin-top: 2rem;
+    color: $color-opal;
+}
+
+p {
+    text-align: center;
+    margin-top: 2rem;
+    color: $color-earth;
+}
+
+button {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    cursor: pointer;
+    width: 15rem;
+    float: right;
+    margin-right: 5rem;
+    color: $color-opal;
+    background-color: $color-white;
+    border: 1px solid $color-opal;
+    padding: 5px;
+    border-radius: 5px;
+}

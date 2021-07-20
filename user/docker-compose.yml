@@ -1,0 +1,17 @@
+version: "3.5"
+
+services:
+
+  tomcat-user:
+    container_name: tomcat-user-server
+    image: tomcat-user-server
+    build:
+      context: .
+      dockerfile: tomcat-user.prod.dockerfile
+    ports:
+      - "8203:8203"
+
+networks:
+  default:
+    external:
+      name: helenos-network

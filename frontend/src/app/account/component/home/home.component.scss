@@ -1,0 +1,226 @@
+@import '../../../../variables.scss';
+@import '../../../../mixins.scss';
+
+main {
+  .first-section {
+    background-color: $color-grey-light;
+    margin-top: -20vh;
+    margin-bottom: 1rem;
+
+    div:first-child {
+      text-align: center;
+
+      h2 {
+        display: inline-block;
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 15rem;
+        text-transform: uppercase;
+        background-image: linear-gradient(to right, $color-yellow, $color-earth);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        letter-spacing: 0.2rem;
+        transition: all .2s;
+
+        @include respond(phone) {
+          margin-top: 18rem;
+        }
+  
+        &:hover {
+            transform: skewY(2deg) skewX(15deg) scale(1.1);
+            text-shadow: 0.5rem 1rem 2rem rgba($color-black, 0.2);
+        }
+      }
+    }
+
+    .explanation-images {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @include respond(phone) {
+        flex-direction: column;
+      }
+
+      .explanation {
+        width: 50%;
+        margin-top: 6rem;
+        padding-top: 4rem;
+        padding-bottom: 6rem;
+
+        @include respond(phone) {
+          width: 100%;
+          margin-top: 0;
+        }
+        
+        h3 {
+          text-align: left;
+          padding-left: 2rem;
+          text-transform: uppercase;
+          font-size: 1.6rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          color: $color-opal;
+
+          &:nth-child(3) {
+            padding-top: 1rem;
+          }
+        }
+
+        p {
+          text-align: left;
+          padding-left: 2rem;
+          padding-top: 1rem;
+          margin: 0 0;
+          font-size: 1.6rem;
+          color: $color-earth;
+
+          &:last-child {
+            padding-bottom: 2rem;
+          }
+        }
+      }
+
+      .images {
+        width: 50%;
+        position: relative;
+
+        @include respond(phone) {
+          margin-top: 7rem;
+          margin-bottom: 8rem;
+          width: 80%;
+          transform: none !important;
+          opacity: 1 !important;
+        }
+
+        img {
+            width: 40%;
+            box-shadow: 0 1.5rem 4rem rgba($color: $color-black, $alpha: .4);
+            border-radius: 2px;
+            position: absolute;
+            transition: all .2s;
+            outline-offset: 2rem;
+
+            &:hover {
+              outline: 1.6rem solid $color-opal;
+              transform: scale(1.05) translateY(-.5rem);
+              box-shadow: 0 2.5rem 4rem rgba($color: $color-black, $alpha: 0.5);
+              z-index: 20;
+          }
+        }
+
+        .img-home-1 {
+          left: 10rem;
+          top: -12.5rem;
+
+          @include respond(phone) {
+            left: 6rem;
+          }
+        }
+
+        .img-home-2 {
+            right: 6rem;
+            top: -8rem;
+
+            @include respond(phone) {
+              top: -10rem;
+            }
+        }
+
+        .img-home-3 {
+            left: 14rem;
+            top: -1rem;
+
+            @include respond(phone) {
+              left: 9rem;
+              top: -5rem;
+            }
+        }
+
+        &:hover img:not(:hover) {
+          transform: scale(.95);
+      } 
+      }
+    }
+  }
+  section:not(:first-child) {
+    background-color: $color-grey-light;
+    // border-top: 0.1rem solid $color-opal;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    @include respond(phone) {
+      flex-direction: column;
+    }
+  
+    fa-icon {
+      color: $color-opal;
+      margin: 5rem;
+    }
+  
+    p {
+      color: $color-opal;
+      margin: 5rem;
+    }
+  }
+  hr {
+    border: none;
+    border-bottom: .1rem solid $color-opal;
+  }
+  .section-device {
+
+    margin: 5rem 0;
+    width: 60rem;
+    height: 30rem;
+    background-image: linear-gradient(to bottom, rgba($color-yellow, 0.35), rgba($color-earth, 0.35)), url('../../../../assets/images/home/open-space.jpg');
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    // transform: skewY(-7deg) !important;
+    @include respond(phone) {
+      transform: none !important;
+      opacity: 1 !important;
+      width: 90%;
+    }
+
+    .icon-device {
+
+      background-color: rgba($color-yellow, 0.8);
+      width: 20%;
+      height: 60%;
+      margin: 0 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      // transform: skewY(7deg);
+      transition: transform .3s;
+
+      @include respond(phone) {
+        margin: 0 2rem;
+      }
+
+      &:hover {
+        transform: translateY(-1.5rem) scale(1.03);
+      }
+
+      fa-icon {
+        margin: 0;
+
+        @include respond(phone) {
+          font-size: 5rem;
+        }
+      }
+
+      h3 {
+        text-align: center;
+        color: $color-opal;
+        font-size: 1.5rem;
+      }
+    }
+  }
+}

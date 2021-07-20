@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: user-service
+  devtools:
+    restart:
+      enabled: true
+  profiles:
+    active: @activatedProperties@
+  servlet:
+    multipart:
+      maxFileSize: 5GB
+      maxRequestSize: 5GB
+      max-file-size: 5GB
+      max-request-size: 5GB
+  datasource:
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+
+# port
+server:
+  port: 8203

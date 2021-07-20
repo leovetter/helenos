@@ -1,0 +1,276 @@
+@import '../../../../variables.scss';
+@import '../../../../mixins.scss';
+
+* {
+  font-family: 'Fjalla One', sans-serif;
+}
+
+section {
+  background-color: $color-grey-light;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 2rem;
+
+  .actions-grid {
+    display: flex;
+    align-items: baseline;
+
+    .actions {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      width: 20%;
+      height: 15rem;
+
+      @include respond(phone) {
+        width: 15%;
+        flex-direction: column;
+      }
+
+      .add-media-icon {
+        color: $color-opal;
+        margin-right: 10%;
+        cursor: pointer;
+      }
+
+      .download-icon {
+        color: $color-opal;
+        margin-right: 10%;
+        cursor: pointer;
+      }
+    }
+
+    .medias-container {
+      width: 60%;
+      margin-top: 2%;
+      @include inputStyle;
+
+      @include respond(phone) {
+        width: 70%;
+      }
+
+      .sort-select {
+        width: 49%;
+        margin-right: 2%;
+        ::ng-deep .mat-select-value {    
+          color: $color-opal !important;  
+        }
+        ::ng-deep .mat-form-field-flex {
+          border-bottom: 1px solid $color-white;
+        }
+      }
+      .search-media {
+        width: 49%;
+        ::ng-deep .mat-form-field-flex {
+          border-bottom: 1px solid $color-white;
+        }
+      }
+      hr {
+        clear: both;
+        border-bottom: none;
+        border-top: 1px solid $color-opal;
+        margin-bottom: 2%;
+      }
+      mat-grid-list {
+        clear: both;
+      }
+      mat-grid-tile {
+        color: $color-white;
+        perspective: 150rem;            
+        -moz-perspective: 150rem;
+
+        &.ready-to-drop {
+          border: 3px solid $color-opal;
+        }
+
+        .first-side {
+          border: solid 2px $color-earth;
+          width: 100%;
+          height: 100%;
+          transition: all .8s;
+          position: absolute;
+          top: 0;
+          left: 0;
+          backface-visibility: hidden;
+
+          .audio-icon {
+            position: relative;
+            height: 100%;
+            
+            fa-icon {
+              @include absCenter;
+            }
+          }
+
+          .cover {
+            width: 100%;
+            height: 100%;
+          }
+
+          sh-secured-media {
+            display: block;
+            width: 100%;
+            height: 100%;
+
+            ::ng-deep .media-container {
+              height: 100%;
+            }
+
+            ::ng-deep fa-icon {
+              @include absCenter;
+            }
+          }
+          mat-grid-tile-footer {
+            justify-content: center;
+            color: $color-opal;
+
+            @include respond(phone) {
+              height: 4rem;
+              font-size: 1.5rem;
+              text-align: center;
+            }
+          }
+        }
+
+        &:hover .first-side {
+          transform: rotateY(180deg);
+        }
+
+        .second-side {
+          background-color: $color-earth;
+          position: absolute;
+          top: 0;
+          left: 0;
+          border: solid 2px $color-earth;
+          width: 100%;
+          height: 100%;
+          transition: all .8s;
+          transform: rotateY(180deg);
+          backface-visibility: hidden;
+
+          .play-media {
+            @include absCenter;
+            color: $color-opal;
+            cursor: pointer;
+
+            @include respond(phone) {
+              top: 60%;
+            }
+          }
+
+          .edit-media-button {
+            color: $color-green;
+            cursor: pointer;
+            position: absolute;
+            padding: 0;
+            width: 20%;
+            height: 20%;
+            right: 0px;
+            top: 0px;            
+          }
+
+          .delete-media-button {
+            color: red;
+            cursor: pointer;
+            position: absolute;
+            padding: 0;
+            width: 20%;
+            height: 20%;
+            right: 6rem;
+            top: 5px;
+
+            @include respond(phone) {
+              right: 4.5rem;
+            }
+          }
+        }
+
+        &:hover .second-side {
+          transform: rotateY(0deg);
+        }
+
+        .media-tile-button {
+            width:100%;
+            height: 100%;
+            padding: 0;
+        }
+      }
+      .add-media-icon {
+        position: absolute;
+        cursor: pointer;
+        left: 12%;
+        color: $color-white;
+      }
+      .download-icon {
+        position: absolute;
+        cursor: pointer;
+        left: 15%;
+        color: $color-white;
+      }
+    }
+
+    .shared-users {
+      width: 20%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      
+
+      .shared-users-list {
+        max-height: 30rem;
+        overflow-y: auto;
+        scrollbar-width: thin;
+
+        .shared-user {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 1rem 0;
+
+          img {
+            width: 4rem;
+            height: 4rem;
+            position: relative;
+            border-radius: 50%;
+            border: 1px solid $color-white;
+          }
+  
+          sh-secured-media {
+            display: inline-block;
+            width: 4rem;
+            height: 4rem;
+            border-radius: 50%;
+            border: 1px solid $color-white;
+  
+            ::ng-deep img {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+            }
+          }
+  
+          .name {
+            margin-left: 1rem;
+            color: $color-earth;
+          }
+        }
+      }
+      
+
+      .shared-with {
+        color: $color-opal;
+        text-decoration: underline;
+        margin-bottom: 2rem;
+      }
+
+      .no-shared-users {
+        color: $color-earth;
+      }
+
+      fa-icon {
+        cursor: pointer;
+        color: $color-opal;
+      }
+    }
+  }
+}

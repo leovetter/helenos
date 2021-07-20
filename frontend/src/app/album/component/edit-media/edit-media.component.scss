@@ -1,0 +1,26 @@
+@import '../../../../variables.scss';
+@import '../../../../mixins.scss';
+
+        
+h3 {
+    color: $color-opal;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+}   
+
+.edit-media-form {
+
+    mat-form-field {
+        width: 100%;
+    }
+    @include inputStyle;
+
+    .submit-button {
+        color: $color-opal;
+        border: 1px solid $color-opal !important;
+        margin-bottom: 2rem;
+        float: right;
+    }
+}
+        

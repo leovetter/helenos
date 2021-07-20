@@ -1,0 +1,44 @@
+<div class="media-container">
+    <div class="loader" [style.display]="displayMedia ? 'none' : ''"></div>
+    <ng-container *ngIf="type === 'image'">
+        <img [attr.src]="dataUrl$ | async"
+             (load)="onLoadImage()"
+             [style.display]="displayMedia ? '' : 'none'"/>
+    </ng-container>
+    <ng-container *ngIf="type === 'video' && !controls">
+        <video width="640" height="480"
+                    [attr.src]="dataUrl$ | async" 
+                    (loadstart)="onLoadVideo()"
+                    [style.display]="displayMedia ? '' : 'none'"
+                    type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </ng-container>
+    <ng-container *ngIf="type === 'video' && controls">
+        <video width="640" height="480" controls
+                    [attr.src]="dataUrl$ | async"
+                    (loadstart)="onLoadVideo()"
+                    [style.display]="displayMedia ? '' : 'none'"
+                    type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </ng-container>
+    <ng-container *ngIf="type === 'sound' && !controls">
+        <audio [attr.src]="dataUrl$ | async" id="audioPlayer"
+               (loadstart)="onLoadSound()"
+               [style.display]="displayMedia ? '' : 'none'"
+               type="audio/mpeg">
+               Your browser does not support the audio element.
+        </audio>
+    </ng-container>
+    <ng-container *ngIf="type === 'sound' && controls">
+        <audio [attr.src]="dataUrl$ | async" controls id="audioPlayer"
+               (loadstart)="onLoadSound()"
+               [style.display]="displayMedia ? '' : 'none'"
+               type="audio/mpeg">
+               Your browser does not support the audio element.
+        </audio>
+    </ng-container>
+</div>
+  
+  

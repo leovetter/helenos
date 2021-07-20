@@ -1,0 +1,58 @@
+@mixin absCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin inputStyle {
+    ::ng-deep .mat-focused .mat-form-field-label {
+        /*change color of label*/
+        color: $color-earth;
+    }
+    ::ng-deep .mat-form-field-ripple {
+        /*change color of underline when focused*/
+        background-color:  $color-grey-2;
+    }
+    ::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
+        /*change color of underline when focused*/
+        background-color: $color-earth;
+    }
+    ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+        color: $color-grey-2;
+    }
+    input {
+        color: $color-opal;
+    }
+}
+
+// MEDIA QUERY MANAGER
+/*
+0 - 600px:      Phone
+600 - 900px:    Tablet Portait
+900 - 1200px:   Tablet landscape
+(1200 - 1800px) is where our normal styles apply
+1800px + :      Big Desktop
+
+$breakpoint argument choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+1em = 16px
+*/
+@mixin respond($breakpoint) {
+ @if $breakpoint == phone {
+    @media (max-width: 37.5em) { @content }; //600px
+ }
+ @if $breakpoint == tab-port {
+    @media (min-width: 37.5em) and (max-width: 56.25em) { @content }; //900px
+ }
+ @if $breakpoint == tab-land {
+    @media (min-width: 56.25em) and (max-width: 75em) { @content }; //1200px
+ }
+ @if $breakpoint == big-desktop {
+    @media (min-width: 75em) and (min-width: 112.5em) { @content }; //1800px
+ }
+}

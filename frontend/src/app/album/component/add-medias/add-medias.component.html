@@ -1,0 +1,90 @@
+<div class="popup">
+    <div class="popup-content">
+
+        <span class="close-popup" (click)="hidePopup.emit()">&#10005;</span>
+
+        <h3 i18n>{{ 'addMedias' | translate }}</h3>
+
+        <div class="player-button">
+            <div class="center">
+                <div id="player"></div>
+                <button mat-stroked-button color="accent" class="stop-player" i18n *ngIf="videoIsPlaying" (click)="stopPlayer()">{{ 'stopPlayer' | translate }}</button>
+            </div>
+        </div>
+
+        <form role="form"
+              (ngSubmit)="addMedias()"
+              class="add-medias-form content"
+              [formGroup]="addMediasForm"
+              #addMediasFormId="ngForm">
+
+            <div class="add-library-form-container">
+
+                <div class="add-medias">
+
+                    <fieldset>
+                        <legend i18n>{{ 'addMedias' | translate }}</legend>
+    
+                        <div formGroupName="imagesGroup">
+    
+                            <div class="uploadfilecontainer" (click)="fileInput.click()" appMediaDragNDrop (onFileDropped)="onFileDropped($event)">
+                                <input hidden multiple type="file" accept="image/*|video/*|audio/*" #fileInput (change)="onFileDropped($event.target.files)" formControlName="images">
+                            </div>
+    
+                        </div>
+    
+                    </fieldset>
+    
+                    <fieldset>
+                        <legend i18n>{{ 'addMediasApi' | translate }}</legend>
+            
+                        <div formGroupName="mediasApiGroup">
+            
+                            <mat-form-field class="search-youtube-fields">
+                                <input matInput i18n-placeholder placeholder="{{ 'searchYoutube' | translate }}" name="searchYoutube" formControlName="searchYoutube" (keydown.enter)="$event.preventDefault()" (keyup)="searchApis($event)">
+                            </mat-form-field>
+            
+                        </div>
+            
+                        <ul class="youtube-results">
+            
+                        <li class="result" *ngFor="let youtubeResult of youtubeResults">
+                        <img class="img-result" [src]="youtubeResult.snippet.thumbnails.default.url">
+                        <div class="name-play">
+                            <span class="name-result">{{youtubeResult.snippet.title}}</span>
+                            <fa-icon [icon]="faPlay" class="play-result fa-2x" (click)="playResult(youtubeResult.id.videoId)"></fa-icon>
+                        </div>
+                        <fa-icon [icon]="faPlus" class="add-result fa-2x" (click)="addResult(youtubeResult)"></fa-icon>
+                        
+                        </li>
+                        </ul>
+                    </fieldset>
+    
+                </div>
+    
+                <div class="files-list" (drop)="drop($event)" (dragover)="allowDrop($event)">
+                    <div [id]="'file-' + i" class="file-item" *ngFor="let media of medias;let i= index" draggable="true" (dragstart)="drag(i, $event)">
+                      <p> {{ media.name }} </p>
+                      <fa-icon [icon]="faTrash" class="delete-file"
+                              (click)="deleteAttachment(media)"></fa-icon>
+                    </div>
+                  </div>
+                  
+                  <div class="progress-bar-container" *ngIf="progress > 0">
+                    <div class="progress-bar" role="progressbar" [style.width.%]="progress">
+                      {{progress}} %
+                    </div>
+                  </div>
+            
+                  <button mat-stroked-button color="accent" class="submit-button" i18n (click)="addMedias()">{{ 'submit' | translate }}</button>
+     
+            </div>
+        </form>
+    </div>
+</div>
+  
+  
+  
+  
+  
+

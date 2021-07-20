@@ -1,0 +1,54 @@
+@import '../../../../variables.scss';
+@import '../../../../mixins.scss';
+
+.about-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 4rem;
+
+    div {
+        margin: 0;
+
+        .infos {
+        color: $color-coffe;
+        margin-right: 2rem;
+        }
+
+        .infos-content {
+        color: $color-earth;
+        }
+
+        div {
+            display: inline-block;
+            width: 20rem;
+
+            input {
+                background-color: transparent;
+                border: none;
+                border-bottom: 1px solid $color-grey-dark;
+                color: $color-opal;
+                visibility: hidden;
+
+                @include respond(phone) {
+                    width: 15rem !important;
+                }
+            }
+
+            .save-button {
+                transform: translate(-100%, -5px);
+                font-size: 11px;
+                background-color: $color-green;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                padding: 3px;
+                cursor: pointer;
+            }
+
+            .save-button[disabled] {
+                background-color: #98FB98;
+            }
+        }
+    }
+}

@@ -1,0 +1,49 @@
+spring:
+  profiles:
+    active: @activatedProperties@
+  application:
+    name: zuul-service
+  servlet:
+    multipart:
+      maxFileSize: 5GB
+      maxRequestSize: 5GB
+      max-file-size: 5GB
+      max-request-size: 5GB
+
+server:
+  port: 8762
+
+ribbon:
+  ReadTimeout: 300000
+  
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 300000
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+
+# Map paths to services
+zuul:
+  ignoredServices: "*"
+  routes:
+    media-service:
+      path: /media/**
+      service-id: media-service
+    library-service:
+      path: /library/**
+      service-id: library-service
+    user-service:
+      path: /user/**
+      service-id: user-service
+    file-service:
+      path: /file/**
+      service-id: file-service
+
+helenos:
+  sengrid-api-key: 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

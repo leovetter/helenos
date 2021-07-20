@@ -1,0 +1,26 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "outDir": "./out-tsc/spec",
+    "types": [
+      "jasmine",
+      "node",
+      "webpack-env",
+      "gapi",
+      "gapi.auth2",
+      "gapi.client.youtube"
+    ],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+  },
+  "files": [
+    "src/test.ts",
+    "src/polyfills.ts"
+  ],
+  "include": [
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts"
+  ]
+}

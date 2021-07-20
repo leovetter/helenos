@@ -1,0 +1,19 @@
+<div class="about-section" [formGroup]="aboutForm" appOnLoadingAboutSection>
+    <div>
+        <span class="infos">{{'firstName' | translate}} : </span>
+        <span id="info-first-name" title="edit" class="infos-content" *ngIf="!showInputFirstName" (click)="setInputFirstName()">{{ user?.firstName }}</span>
+        <div [@openInput]="showInputFirstName ? 'show' : 'hide'" *ngIf="!person">
+            <input id="input-first-name" type="text" formControlName="firstName"  appResetFirstName (resetFieldFirstName)="resetFieldFirstName()">
+            <button class="save-button" *ngIf="showInputFirstName" [disabled]="!aboutForm.get('firstName').dirty || !aboutForm.get('firstName').valid" (click)="saveFirstName()">{{ 'save' | translate }}</button>
+        </div>
+        
+    </div>
+    <div>
+        <span class="infos">{{'lastName' | translate}} : </span>
+        <span id="info-last-name" title="edit" class="infos-content" *ngIf="!showInputLastName" (click)="setInputLastName()">{{ user?.lastName }}</span>
+        <div [@openLastNameInput]="showInputLastName ? 'show' : 'hide'" *ngIf="!person">
+            <input id="input-last-name" type="text" formControlName="lastName"  appResetLastName (resetFieldLastName)="resetFieldLastName()">
+            <button class="save-button" *ngIf="showInputLastName" [disabled]="!aboutForm.get('lastName').dirty || !aboutForm.get('lastName').valid" (click)="saveLastName()">{{ 'save' | translate }}</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+
+<h3>{{ 'editMedia' | translate}}</h3>
+
+<form role="form"
+      (ngSubmit)="updateMedia()"
+      class="edit-media-form"
+      #editMediaFormElement="ngForm"
+      [formGroup]="editMediaForm">
+
+      <mat-form-field>
+        <input required matInput i18n-placeholder placeholder="{{ 'name' | translate }}" name="name" formControlName="name">
+      </mat-form-field>
+
+      <mat-error *ngIf="(editMediaForm.get('name').touched || editMediaFormElement.submitted) && editMediaForm.get('name').errors">
+        <small *ngIf="editMediaForm.get('name').hasError('required')" i18n>
+          {{ 'titleRequired' | translate }}
+        </small>
+        <br>
+        <br>
+      </mat-error>
+      <br>
+      <button mat-stroked-button color="accent" class="submit-button" i18n>{{ 'submit' | translate }}</button>
+</form>

@@ -1,0 +1,133 @@
+@import '../../../../variables.scss';
+
+.playlist-player {
+    z-index: 5;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: max-height 1s linear;
+    max-height: 3rem;
+    height:auto;
+
+    &.up {
+        max-height: 60rem;
+    }
+  
+    .player {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        background-image: linear-gradient(to bottom, rgba($color-yellow, 0.35), rgba($color-earth, 0.35)), url('../../../../assets/images/player-image.jpg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        .secured-media {
+            display: none;
+          }
+        
+        #cover {
+            width: 10rem;
+            height: 10rem;
+            border-radius: 50%;
+            position: absolute;
+            left: 2.5rem;
+            top: -8rem;
+            animation: rotate 3s linear infinite;
+            animation-play-state: paused;
+        }
+        
+        .progress-name {
+            width: 100%;
+            text-align: center;
+            margin-left: 15rem;
+    
+            .progress-container {
+                background: $color-white;
+                border-radius: 5px;
+                cursor: pointer;
+                height: 4px;
+                width: 100%;
+                margin-bottom: 0.5%;
+                margin-top: 2%;
+        
+            #progress {
+                background-color: $color-opal;
+                border-radius: 5px;
+                height: 100%;
+                width: 0%;
+                transition: width 0.1s linear;
+            }
+            }
+    
+            span {
+            color: $color-white;
+            }
+        }
+        
+    
+        .audio-change {
+            color: $color-white;
+            cursor: pointer;
+            margin-left: 5%;
+        }
+    
+        .up-audio {
+            cursor: pointer;
+            margin-left: 5%;
+            color: $color-black;
+            width: 10%;
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 4rem;
+    
+            .audio-up {
+                height: 1rem;
+            }
+        }
+    
+        sh-secured-media {
+        width: 60%;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 0.5%;
+        margin-left: 5%;
+    
+            ::ng-deep audio {
+                width: 100%;
+            }
+        }
+    }
+
+    .playlist {
+        background-color: #333;
+        padding: 1rem 1rem;
+        overflow: auto;
+        scrollbar-width: thin;
+
+        .sound {
+            color: $color-white;
+            cursor: pointer;
+            border-bottom: 1px solid $color-white;
+
+            &:not(:last-child) {
+                margin-bottom: 5px;
+            }
+        }
+    }
+    
+}
+  
+@keyframes rotate {
+    from {
+        transform: rotate(0deg)
+    }
+
+    to {
+        transform: rotate(360deg)
+    }
+}

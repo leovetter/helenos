@@ -1,0 +1,106 @@
+@import '../../../../variables.scss';
+@import '../../../../mixins.scss';
+
+* {
+    font-family: 'Fjalla One', sans-serif;
+}
+
+.content {
+    background-color: $color-grey-light;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    .account-form {
+        margin-top: 5%;
+        display: inline-block;
+        width: 60%;
+        margin-left: 20%;
+        .account-form-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            h3 {
+                color: $color-opal;
+                text-align: center;
+            }
+            .upload-file-container {
+                .profile-container {
+                    display: flex;
+                    flex-direction: row;
+                    .image-container {
+                        cursor: pointer;
+                        width: 95px;
+                        height: 120px;
+                        border-radius: 50%;
+                        border: 1px solid $color-earth;
+                        background-color: transparent;
+                        ::ng-deep img {
+                            width: 95px;
+                            height: 120px;
+                            border-radius: 50%;
+                        }
+                        secured-image {
+                            width: 95px;
+                            height: 120px;
+                            border-radius: 50%;
+                            ::ng-deep img {
+                                border-radius: 50%;
+                            }
+                        }
+                    }
+                    span {
+                        color: $color-opal;
+                        margin-left: 5%;
+                        display: inline-flex;
+                        align-items: center;
+                    }
+                }
+    
+            }
+            fieldset {
+                padding: 0;
+                border-left: transparent;
+                border-top: 1px solid $color-opal;
+                border-bottom: none;
+                border-right: transparent;
+                margin: 2rem 0;
+                legend {
+                  color: $color-opal;
+                }
+                .group-fields {
+                    margin-top: 2rem;
+                    @include inputStyle;
+
+                    mat-form-field {
+                        display: block;
+                        color: #DB5A42;
+                        input {
+                            color: #DB5A42;
+                          }
+                        // ::ng-deep .mat-form-field-flex {
+                        //     border-bottom: 1px solid white;
+                        // }
+                        // input:-webkit-autofill {
+                        //     -webkit-text-fill-color: #DB5A42;
+                        //     -webkit-transition-delay: 99999s;
+                        //     transition-delay: 99999s;
+                        // }
+                    }
+                    mat-error {
+                        color: red;
+                    }
+                }
+            }
+            button {
+                width: 30%;
+                margin-left: auto;
+                border: 1px solid $color-opal !important;
+                color: $color-opal;
+
+                &:last-child {
+                    margin-bottom: 2rem;
+                }
+            }
+        }
+    }
+}
+

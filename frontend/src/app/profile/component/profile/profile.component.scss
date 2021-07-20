@@ -1,0 +1,152 @@
+@import '../../../../variables.scss';
+@import '../../../../mixins.scss';
+
+#content {
+    background-color: $color-grey-light;
+    padding-bottom: 2%;
+    margin-top: 1rem;
+
+    @include respond(phone) {
+      margin-top: 0;
+    }
+  
+    .pictures {
+      position: relative;
+      padding-bottom: 2%;
+  
+      .cover-photo {
+        position: relative;
+        height: 30rem;
+        padding-bottom: 0;
+        background: linear-gradient(to bottom, #333d45 0%, #1a1d21 100%);
+  
+        sh-secured-media {
+          display: inline-block;
+          height: 100%;
+          width: 100%;
+  
+          ::ng-deep .media-container {
+            position: relative;
+            height: 100%;
+            width: 100%;
+  
+            ::ng-deep img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+        }
+  
+        button {
+          padding: 2rem;
+          border: 2px solid $color-white;
+          border-radius: 5px;
+          position: absolute;
+          bottom: 2rem;
+          right: 2rem;
+          background-color: transparent;
+          color: $color-white;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+
+          @include respond(phone) {
+            padding: 1rem;
+            font-size: 1rem;
+          }
+  
+          span {
+            margin-left: 2rem;
+          }
+  
+          &:hover {
+            background-color: rgba(247, 247, 247, 0.3);
+          }
+        }
+      }
+  
+      .profil-container {
+        background-color: transparent;
+        position: absolute;
+        left: 5rem;
+        bottom: -7.5rem;
+
+        @include respond(phone) {
+          left: 2rem;
+        }
+  
+        img {
+          width: 15rem;
+          height: 15rem;
+          position: relative;
+          border-radius: 50%;
+          border: 3px solid $color-white;
+        }
+  
+        sh-secured-media {
+  
+          ::ng-deep .media-container {
+            position: relative;
+            width: 15rem;
+            height: 15rem;
+  
+            ::ng-deep img {
+              border-radius: 50%;
+              border: 3px solid $color-white;
+              @include absCenter;
+            }
+          }
+        }
+  
+        div {
+          position: absolute;
+          right: 0;
+          bottom: 3rem;
+          background-color: transparent;
+          border: 1px solid $color-opal;
+          border-radius: 50%;
+          cursor: pointer;
+          padding: 0px 5px;
+  
+          fa-icon {
+            color: $color-opal;
+          }
+        }
+  
+        .name {
+          position: absolute;
+          color: $color-earth;
+          font-size: 4rem;
+          white-space: nowrap;
+          right: 0;
+          bottom: 3rem;
+          transform: translateX(130%);
+
+          @include respond(phone) {
+            bottom: 2rem;
+            right: 3rem;
+          }
+        }
+      }
+    }
+    
+    .tabs {
+      position: relative;
+      color: $color-earth;
+      margin: 0;
+      margin-left: 2rem;
+      border-bottom: 1px solid $color-grey-dark;
+      margin-right: 2rem;
+      padding-bottom: 0;
+      margin-top: 10rem;
+      
+      span {
+        margin-right: 2rem;
+        cursor: pointer;
+      }
+    }
+  
+    .tabs .active {
+      color: $color-coffe;
+    }
+}

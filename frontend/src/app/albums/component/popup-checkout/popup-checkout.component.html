@@ -1,0 +1,11 @@
+<!-- <div id="card-element" class="MyCardElement">
+</div>
+
+<div id="card-errors" role="alert"></div>
+<button type="submit" (click)="submit()">Subscribe</button> -->
+
+<div *ngFor="let plan of plans?.data" class="plan-div">
+    <img *ngIf="plan.nickname === 'standard-monthly'" src="../../../../assets/images/logo/logo_only_blue_transparent_background.png">
+    <img *ngIf="plan.nickname === 'premium-monthly'" src="../../../../assets/images/logo/logo_only_gold_transparent_background.png"> 
+    {{ plan.nickname | translate}}
+</div>

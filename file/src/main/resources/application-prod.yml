@@ -1,0 +1,6 @@
+eureka:
+  instance:
+    hostname: tomcat-file-server
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

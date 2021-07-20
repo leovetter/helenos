@@ -1,0 +1,14 @@
+## PostgreSQL
+spring:
+  application:
+    name: media-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/helenos
+    username: helenos
+    password: helenos
+
+# eureka server url
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

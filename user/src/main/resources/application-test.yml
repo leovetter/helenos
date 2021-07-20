@@ -1,0 +1,25 @@
+## PostgreSQL
+spring:
+  application:
+    name: user-service
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://postgres/helenos
+    username: helenos
+    password: helenos
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql:  false
+    hibernate:
+      ddl-auto: none
+
+eureka:
+  instance:
+    hostname: tomcat-user-server
+  client:
+    serviceUrl:
+      defaultZone: http://tomcat-eureka-server:8761/eureka/
+      
+helenos:
+  stripeKey: sk_test_fgHWq5be8y7YV3dAHsxe6zSi003gqJ6kRw

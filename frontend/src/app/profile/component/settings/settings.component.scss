@@ -1,0 +1,95 @@
+@import '../../../../variables.scss';
+@import '../../../../mixins.scss';
+
+.content {
+    background-color: $color-grey-light;
+    padding-top: 2rem;
+    margin-top: 1rem;
+    padding-bottom: 2rem;
+
+    .language-fieldset {
+        border: none;
+        border-top: 1px solid $color-opal;
+        padding-top: 2rem;
+        margin: 0 1rem;
+        width: 60%;
+
+        legend {
+            color: $color-opal;
+        }
+
+        .langue {
+            margin-top: 2rem;
+            color: $color-earth;
+            margin-left: 3rem;
+        }
+
+        .select-langue {
+            margin-left: 3rem;
+        }
+
+        .save-langue {
+            margin-left: 2rem;
+            color: $color-green;
+            padding: 0 1rem;
+            background-color: transparent;
+            border: 1px solid $color-green;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .edit-langue {
+            margin-left: 2rem;
+            color: $color-opal;
+            padding: 0 1rem;
+            background-color: transparent;
+            border: 1px solid $color-opal;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    }
+
+    form {
+        width: 60%;
+        margin: 0 1rem;
+
+        &:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .password-fieldset {
+            border: none;
+            border-top: 1px solid $color-opal;
+            padding-top: 2rem;
+            margin-top: 2rem;
+    
+            legend {
+                color: $color-opal;
+            }
+    
+            @include inputStyle;
+    
+            mat-form-field {
+                display: block;
+                margin-left: 3rem;
+            }
+
+            span {
+                display: block;
+            }
+        }
+    
+        .save-password {
+            width: 10%;
+            float: right;
+            border: 1px solid $color-opal !important;
+            color: $color-opal;
+            cursor: pointer;
+            border-radius: 5px;
+            background-color: transparent;
+        }
+    }
+    
+}

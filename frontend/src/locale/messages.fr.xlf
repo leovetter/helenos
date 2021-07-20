@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="fr" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="f96b7c371eda89c665ab596577dd6a50872cfda5" datatype="html">
+        <source>Media App</source>
+        <target>Applicatio de gestion de média</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="13ea6a4474a5af86a365edfcde66cba360216908" datatype="html">
+        <source>Mediathèque</source>
+        <target>Médiathèque</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6bfd66c6c4339427dcdf4f288c575315de3c05ba" datatype="html">
+        <source>Login
+        </source>
+        <target>Connexion</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="daf134d3324f26eda60d3499a9b9f7e90401b50a" datatype="html">
+        <source>Sign Up
+        </source>
+        <target>S'enregistrer</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5df11046d48d9a596ec08dfbdb53012636dac1b9" datatype="html">
+        <source>Logout
+        </source>
+        <target>Déconnexion</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

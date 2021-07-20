@@ -1,0 +1,41 @@
+<div [formGroup]="userGroup" class="global-container">
+  <!-- <h3 i18n>{{ 'shareUsersLibrary' | translate }}</h3> -->
+  <div class="container">
+    <mat-checkbox class="private-checkbox" name="publicLibrary" formControlName="publicLibrary">
+      {{ 'publicLibrary' | translate }}</mat-checkbox>
+    <br>
+    <h3 class="share-users">{{ 'shareWithUsers' | translate }}</h3>
+    <mat-form-field>
+        <input matInput i18n-placeholder
+               placeholder="{{ 'searchUser' | translate }}"
+               name="searchUser"
+               formControlName="searchUser"
+               [matAutocomplete]="auto">
+    </mat-form-field>
+    <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let user of suggestUsers" [value]="user.firstName + ' ' + user.lastName" (click)=addSharedUser(user)>{{user.firstName}} {{user.lastName}}</mat-option>
+    </mat-autocomplete>
+
+    <div class="list-container">
+
+        <mat-list role="list" #sharedUsersElement *ngIf="sharedUsers" class="shared-users-list">
+            <mat-list-item role="listitem" *ngFor="let user of sharedUsers">
+              <sh-secured-media [src]="user.picture | formatSrc:'profil':user.id"
+                            [type]="'image'"
+                            [load]="true" 
+                            [isIntersecting]="true"
+                            alt="Avatar"
+                            class="avatar">
+              </sh-secured-media>
+                &nbsp; {{user.firstName}} {{user.lastName}}
+                <fa-icon [icon]="faTrash" class="delete-user fa-2x" (click)="deleteUser(user)"></fa-icon>
+            </mat-list-item>
+        </mat-list>
+        
+    </div>
+    
+  </div>
+
+  <button mat-stroked-button class="submit-button" color="accent" (click)="submitUsers()" i18n>{{ 'submit' | translate }}</button>
+</div>
+

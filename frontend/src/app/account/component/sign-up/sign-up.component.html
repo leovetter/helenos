@@ -1,0 +1,90 @@
+<form role="form" (submit)="signUp()" class="sign-up-form" #signUpFormId="ngForm" [formGroup]="signUpForm">
+  <div class="sign-up-form-container">
+
+    <h3 i18n>{{ 'userCreation' | translate }}</h3>
+
+    <mat-form-field>
+      <input required #firstName matInput i18n-placeholder placeholder="{{ 'firstName' | translate }}" name="firstName" formControlName="firstName">
+      <span matPrefix><fa-icon [icon]="faUser" class="icon"></fa-icon></span>
+    </mat-form-field>
+
+    <mat-error *ngIf="(signUpForm.get('firstName').touched || signUpFormId.submitted) && signUpForm.get('firstName').errors">
+      <small *ngIf="signUpForm.get('firstName').hasError('required')" i18n>
+        {{ 'firstNameRequired' | translate }}
+      </small>
+    </mat-error>
+
+    <mat-form-field>
+      <input required #lastName matInput i18n-placeholder placeholder="{{ 'lastName' | translate }}" name="lastName" formControlName="lastName">
+      <span matPrefix><fa-icon [icon]="faUser" class="icon"></fa-icon></span>
+    </mat-form-field>
+
+    <mat-error *ngIf="(signUpForm.get('lastName').touched || signUpFormId.submitted) && signUpForm.get('lastName').errors">
+      <small *ngIf="signUpForm.get('lastName').hasError('required')" i18n>
+        {{ 'lastNameRequired' | translate }}
+      </small>
+    </mat-error>
+
+
+    <mat-form-field>
+      <input required matInput type="email" i18n-placeholder placeholder="{{ 'email' | translate }}" name="email" formControlName="email">
+      <span matPrefix><fa-icon [icon]="faEnvelope" class="icon"></fa-icon></span>
+    </mat-form-field>
+
+    <mat-error *ngIf="(signUpForm.get('email').touched || signUpFormId.submitted) && signUpForm.get('email').errors">
+      <small *ngIf="signUpForm.get('email').hasError('required')" i18n>
+        {{ 'emailRequired' | translate }}
+      </small>
+      <small *ngIf="signUpForm.get('email').hasError('email')" i18n>
+        {{ 'emailPattern' | translate }}
+      </small>
+    </mat-error>
+
+
+    <div formGroupName="passwordGroup">
+        <mat-form-field class="password-field">
+          <input matInput type="password" i18n-placeholder placeholder="{{ 'enterPassword' | translate }}" required name="password" formControlName="password">
+          <span matPrefix><fa-icon [icon]="faLock" class="icon"></fa-icon></span>
+        </mat-form-field>
+
+        <mat-error *ngIf="(signUpForm.get('passwordGroup').get('password').touched || signUpFormId.submitted) && signUpForm.get('passwordGroup').get('password').errors">
+          <small *ngIf="signUpForm.get('passwordGroup').get('password').hasError('required')" i18n>
+            {{ 'passwordRequired' | translate }}
+          </small>
+          <small *ngIf="signUpForm.get('passwordGroup').get('password').hasError('pattern')" i18n>
+            <br *ngIf="signUpForm.get('passwordGroup').get('password').hasError('required')">
+            {{ 'passwordPattern' | translate }}
+          </small>
+          <small *ngIf="signUpForm.get('passwordGroup').get('password').hasError('minlength')" i18n>
+            <br *ngIf="signUpForm.get('passwordGroup').get('password').hasError('required') || signUpForm.get('passwordGroup').get('password').hasError('pattern')">
+            {{ 'minLengthPassword' | translate }}
+          </small>
+        </mat-error>
+
+        <mat-form-field class="password-field">
+          <input id="repeatPassword" matInput type="password" i18n-placeholder placeholder="{{ 'repeatPassword' | translate }}" name="repeatPassword" required formControlName="repeatPassword">
+          <span matPrefix><fa-icon [icon]="faLock" class="icon"></fa-icon></span>
+        </mat-form-field>
+
+        <mat-error *ngIf="(signUpForm.get('passwordGroup').get('repeatPassword').touched || signUpFormId.submitted) && signUpForm.get('passwordGroup').get('repeatPassword').errors">
+          <small *ngIf="signUpForm.get('passwordGroup').get('repeatPassword').hasError('required')" i18n>
+            {{ 'passwordRequired' | translate }}
+          </small>
+        </mat-error>
+
+        <mat-error *ngIf="signUpFormId.submitted">
+          <small *ngIf="signUpForm.get('passwordGroup').hasError('validatePassword')" i18n>
+            {{ 'passwordMustMatch' | translate }}
+          </small>
+        </mat-error>
+    </div>
+
+    <div class="drive-social">
+      <mat-checkbox class="drive checkbox" name="drive" formControlName="drive">{{ 'drive' | translate }}</mat-checkbox>
+      <mat-checkbox class="social checkbox" name="social" formControlName="social">{{ 'social' | translate }}</mat-checkbox>
+    </div>
+    
+
+    <button mat-stroked-button color="accent" i18n>{{ 'submit' | translate }}</button>
+  </div>
+</form>

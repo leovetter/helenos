@@ -1,0 +1,19 @@
+version: "3.5"
+
+services:
+      
+  tomcat-eureka-server:
+    container_name: tomcat-eureka-server
+    image: tomcat-eureka-server
+    build:
+      context: .
+      dockerfile: tomcat-eureka.dockerfile
+    ports:
+      - "8761:8761"
+    expose:
+    - "8761"
+
+networks:
+  default:
+    external:
+      name: helenos-network

@@ -1,0 +1,159 @@
+<div class="actions-grid">
+
+  <div class="actions" [ngClass]="{ 'no-actions': !person || !shared }">
+    <!-- <fa-icon [icon]="faPlusCircle" class="icon fa-2x add-library-icon"
+                                  (click)="addAlbum()"
+                                  *ngIf="!person && !shared">
+
+    </fa-icon> -->
+
+    <button class="add-library-icon" (click)="addAlbum()" *ngIf="!person && !shared">
+      <fa-icon [icon]="faPlus" class="icon fa-1x"></fa-icon>
+      {{ 'create' | translate }}
+    </button>
+  </div>
+
+  <div class="library-grid-container" [formGroup]="librariesGroup">
+
+    <mat-form-field class="sort-select">
+      <mat-label>{{ 'sorteBy' | translate}}</mat-label>
+      <mat-select [(value)]="selectedSort" (selectionChange)="editSelectedSort()">
+        <mat-option *ngFor="let sort of sorting" [value]="sort.key">
+          {{sort.value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <mat-form-field class="search-library">
+      <input matInput i18n-placeholder
+              placeholder="{{ 'searchLibrary' | translate }}"
+              formControlName="searchLibrary">
+    </mat-form-field>
+  
+    <hr>
+  
+    <div class="list-container" #listContainer  *ngIf="displayMode !== 'lines'">
+      <mat-grid-list [cols]="calculCols()" rowHeight="1:1" gutterSize="30" class="large-list">
+  
+        <mat-grid-tile *ngFor="let library of libraries; let i = index">
+
+          <div class="first-side">
+            <sh-secured-media *ngIf="library.cover; else noCover"
+                              class="library-picture"
+                              [type]="'image'"
+                              [src]="library.cover | formatCover:library.title:library.ownedUserId"
+                              [load]="true"
+                              [isIntersecting]="true">
+            </sh-secured-media>
+            <!-- <img [id]="library.title" [src]="getUrl(library)"> -->
+            <ng-template #noCover>
+              <div class="no-cover"></div>
+            </ng-template>
+            <mat-grid-tile-footer>{{ library.title }}</mat-grid-tile-footer>
+          </div>
+
+          <div class="second-side">
+
+            <fa-icon [icon]="faPlay" class="icon fa-5x open-library"
+                                    (click)="goAlbum(library.id)"></fa-icon>
+            
+            <fa-icon [icon]="faTrash" class="icon fa-2x delete-library-button"
+                                    (click)="deleteLibrary(library)"
+                                    *ngIf="!person && !shared"></fa-icon>
+
+          <fa-icon [icon]="faEdit" class="icon fa-2x edit-library-button"
+                                    (click)="setEditLibrary(library.id)"
+                                    *ngIf="!person && !shared"></fa-icon>
+
+          </div>
+
+        </mat-grid-tile>
+    
+      </mat-grid-list>
+    
+    </div>
+
+    <div class="lines-container" *ngIf="displayMode === 'lines'">
+
+        <div class="lines-header">
+          <div>{{'coverAlbum' | translate}}</div>
+          <div>{{'nameAlbum' | translate}}</div>
+          <div>{{'creationDateAlbum' | translate}}</div>
+          <div>{{'editAlbum' | translate}}</div>
+          <div>{{'delete' | translate}}</div>
+          <div>{{'goAlbum' | translate}}</div>
+        </div>
+
+        <div *ngFor="let library of libraries" class="lines-row">
+          <div>
+            <sh-secured-media *ngIf="library.cover; else noCover"
+                              [type]="'image'"
+                              class="lines-cover"
+                              [src]="library.cover | formatCover:library.title:library.ownedUserId"
+                              [load]="true"
+                              [isIntersecting]="true">
+            </sh-secured-media>
+            <ng-template #noCover>
+              <div class="no-cover"></div>
+            </ng-template>
+          </div>
+          <div>{{ library.title}}</div>
+          <div>{{ library.creationDate | date}}</div>
+          <div>
+            <fa-icon [icon]="faEdit" class="icon fa-2x edit-library-button"
+                                    (click)="setEditLibrary(library.id)"
+                                    *ngIf="!person && !shared"></fa-icon>
+          </div>
+          <div>
+            <fa-icon [icon]="faTrash" class="icon fa-2x delete-library-button"
+                                    (click)="deleteLibrary(library)"
+                                    *ngIf="!person && !shared"></fa-icon>
+          </div>
+          <div>
+            <fa-icon [icon]="faPlay" class="icon fa-2x open-library"
+                                    (click)="goAlbum(library.id)"></fa-icon>
+          </div>
+        </div>
+
+    </div>
+  </div>
+
+  <div class="other-actions">
+
+    <div class="display-icon" [ngClass]="{active: showDisplayMenu}" (click)="showDisplayMenu = !showDisplayMenu">
+
+      <fa-icon [icon]="faThLarge" class="icon display-mode" *ngIf="displayMode === 'large-grid'"></fa-icon>
+      <fa-icon [icon]="faTh" class="icon display-mode" *ngIf="displayMode === 'grid'"></fa-icon>
+      <fa-icon [icon]="faGripLines" class="icon display-mode" *ngIf="displayMode === 'lines'"></fa-icon>
+      <fa-icon [icon]="faChevronDown" class="icon display-down"></fa-icon>
+
+      <div class="display-menu" *ngIf="showDisplayMenu">
+        <ul>
+          <li (click)="displayMode = 'large-grid'">
+            {{ 'largeGrid' | translate}} 
+            <fa-icon [icon]="faThLarge"></fa-icon>
+          </li>
+          <li (click)="displayMode = 'grid'">
+            {{ 'grid' | translate}}
+            <fa-icon [icon]="faTh"></fa-icon>
+          </li> 
+          <li (click)="displayMode = 'lines'">
+            {{ 'lines' | translate}}
+            <fa-icon [icon]="faGripLines"></fa-icon>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+
+  </div>
+</div>
+
+<sh-popup *ngIf="showEditPopup" (hidePopup)="showEditPopup = false">
+  <hel-smart-edit-album class="edit-library"  (hidePopup)="showEditPopup = false"> </hel-smart-edit-album>
+</sh-popup>
+
+<sh-popup *ngIf="showDeletePopup" (hidePopup)="showDeletePopup = false">
+  <hel-delete-album  (hidePopup)="showDeletePopup = false" [album]="albumToDelete"></hel-delete-album>
+</sh-popup>
+

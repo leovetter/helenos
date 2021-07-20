@@ -1,0 +1,19 @@
+## PostgreSQL
+spring:
+  application:
+    name: zuul-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/helenos
+    username: helenos
+    password: helenos
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://185.146.20.149:8761/eureka/
+
+helenos:
+  host: localhost
+
+server:
+  port: 8762

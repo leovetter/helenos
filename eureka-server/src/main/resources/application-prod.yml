@@ -1,0 +1,3 @@
+eureka:
+  instance:
+    hostname:  185.146.20.149

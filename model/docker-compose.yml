@@ -1,0 +1,17 @@
+version: "3.5"
+
+services:
+
+  postgres:
+    container_name: postgres
+    image: postgres
+    build:
+      context: .
+      dockerfile: ./postgres.prod.dockerfile
+    volumes:
+      - /home/vetter_leo/data:/var/lib/postgresql/data
+
+networks:
+  default:
+    external:
+      name: helenos-network

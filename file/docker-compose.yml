@@ -1,0 +1,19 @@
+version: "3.5"
+
+services:
+ 
+  tomcat-file:
+    container_name: tomcat-file-server
+    image: tomcat-file-server
+    build:
+      context: .
+      dockerfile: tomcat-file.prod.dockerfile
+    volumes:
+      - /home/vetter_leo/data:/usr/local/tomcat/src
+    ports:
+      - "8205:8205"
+
+networks:
+  default:
+    external:
+      name: helenos-network
